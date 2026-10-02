@@ -1,0 +1,136 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Use Case L8 CSAT NPS" id="ONnmANlfFkB4JqGtUH0I">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-37" parent="1" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;width=320;height=30;);" value="Hệ thống Smart CRM - Luồng L8 (CSAT/NPS)" vertex="1">
+          <mxGeometry height="520" width="360" x="250" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-38" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Hệ thống CRM" vertex="1">
+          <mxGeometry height="60" width="30" x="110" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-39" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Khách hàng" vertex="1">
+          <mxGeometry height="60" width="30" x="110" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-40" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Nhân viên CSKH" vertex="1">
+          <mxGeometry height="60" width="30" x="690" y="265" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-41" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Quản lý / Ban giám đốc" vertex="1">
+          <mxGeometry height="60" width="30" x="690" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-42" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="UC-01: Tự động kích hoạt &amp; gửi form" vertex="1">
+          <mxGeometry height="50" width="260" x="300" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-43" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="UC-02: Thực hiện đánh giá CSAT &amp; NPS" vertex="1">
+          <mxGeometry height="50" width="260" x="300" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-44" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="UC-03: Nhập ý kiến đóng góp chi tiết" vertex="1">
+          <mxGeometry height="50" width="260" x="300" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-45" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="UC-04: Xem danh sách phản hồi khảo sát" vertex="1">
+          <mxGeometry height="50" width="260" x="300" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-46" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="UC-05: Lọc và tìm kiếm phản hồi" vertex="1">
+          <mxGeometry height="50" width="260" x="300" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-47" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="UC-06: Xem Dashboard tổng hợp chỉ số" vertex="1">
+          <mxGeometry height="50" width="260" x="300" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-48" edge="1" parent="1" source="7FhAVxLyDNwCs5T_HHI5-38" target="7FhAVxLyDNwCs5T_HHI5-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-49" edge="1" parent="1" source="7FhAVxLyDNwCs5T_HHI5-39" target="7FhAVxLyDNwCs5T_HHI5-43">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-50" edge="1" parent="1" source="7FhAVxLyDNwCs5T_HHI5-39" target="7FhAVxLyDNwCs5T_HHI5-44">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-51" edge="1" parent="1" source="7FhAVxLyDNwCs5T_HHI5-40" target="7FhAVxLyDNwCs5T_HHI5-45">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-52" edge="1" parent="1" source="7FhAVxLyDNwCs5T_HHI5-40" target="7FhAVxLyDNwCs5T_HHI5-46">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-53" edge="1" parent="1" source="7FhAVxLyDNwCs5T_HHI5-41" target="7FhAVxLyDNwCs5T_HHI5-47">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-56" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;html=1;fontStyle=1;fontSize=14;" value="CHÚ THÍCH" vertex="1">
+          <mxGeometry height="30" width="100" x="40" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-57" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="" vertex="1">
+          <mxGeometry height="35" width="20" x="80" y="325" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-58" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;html=1;" value=": actor (nằm ngoài ranh giới hệ thống)." vertex="1">
+          <mxGeometry height="30" width="300" x="110" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-59" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="30" width="60" x="60" y="375" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-60" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;html=1;" value=": use case (tên = động từ + đối tượng)." vertex="1">
+          <mxGeometry height="30" width="300" x="130" y="375" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-61" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="" vertex="1">
+          <mxGeometry height="35" width="60" x="60" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-62" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;html=1;" value=": Elip đậm, nền xanh: use case MUST." vertex="1">
+          <mxGeometry height="30" width="300" x="130" y="422" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-63" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="60" y="490" as="sourcePoint" />
+            <mxPoint x="110" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-64" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;html=1;" value=": quan hệ giữa actor và use case." vertex="1">
+          <mxGeometry height="30" width="300" x="130" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-65" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;html=1;" value="&lt;div&gt;---&amp;lt;&amp;lt;include&amp;gt;&amp;gt;---&amp;gt; : use case gốc luôn gọi use case được include.&lt;/div&gt;&lt;div&gt;        ^&lt;/div&gt;&lt;div&gt;        |&lt;/div&gt;&lt;div&gt;  &amp;lt;&amp;lt;extend&amp;gt;&amp;gt;&lt;/div&gt;&lt;div&gt;        |&lt;/div&gt;&lt;div&gt;        . : mở rộng tùy điều kiện.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="85" width="350" x="60" y="515" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-68" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" value="" vertex="1">
+          <mxGeometry height="360" width="320" x="240" y="615" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-69" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;html=1;fontStyle=1;fontSize=13;fontColor=#000000;" value="CHÚ THÍCH" vertex="1">
+          <mxGeometry height="25" width="100" x="270" y="635" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-70" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="" vertex="1">
+          <mxGeometry height="25" width="15" x="285" y="665" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-71" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;html=1;fontSize=11;fontColor=#000000;" value=": actor (ngoài ranh giới hệ thống)." vertex="1">
+          <mxGeometry height="25" width="250" x="310" y="665" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-72" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="22" width="45" x="270" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-73" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;html=1;fontSize=11;fontColor=#000000;" value=": use case (động từ + đối tượng)." vertex="1">
+          <mxGeometry height="25" width="240" x="320" y="698" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-74" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="" vertex="1">
+          <mxGeometry height="22" width="45" x="270" y="732" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-75" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;html=1;fontSize=11;fontColor=#000000;" value=": Elip đậm, nền xanh: use case MUST." vertex="1">
+          <mxGeometry height="25" width="240" x="320" y="731" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-76" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="270" y="778" as="sourcePoint" />
+            <mxPoint x="315" y="762" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-77" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;html=1;fontSize=11;fontColor=#000000;" value=": quan hệ giữa actor và use case." vertex="1">
+          <mxGeometry height="25" width="240" x="320" y="761" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-78" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;html=1;fontSize=10;fontColor=#000000;" value="---&amp;lt;&amp;lt;include&amp;gt;&amp;gt;---&gt; : gọi use case include.&#xa;  ^&#xa;  |&#xa;&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;&#xa;  |&#xa;  . : mở rộng tùy điều kiện." vertex="1">
+          <mxGeometry height="85" width="250" x="270" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-79" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="30" width="45" x="270" y="885" as="geometry" />
+        </mxCell>
+        <mxCell id="7FhAVxLyDNwCs5T_HHI5-80" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;html=1;fontSize=11;fontColor=#000000;" value=": ranh giới hệ thống." vertex="1">
+          <mxGeometry height="25" width="230" x="325" y="887.5" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
