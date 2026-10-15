@@ -1,0 +1,32 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="ERD Diagram L8 CSAT NPS" id="4Is7g6dG9jG9M3yf-WfZ">
+    <mxGraphModel dx="1022" dy="564" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="gZqR9jV6j1ivc3Jsrw-t-1" parent="1" style="shape=table;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;align=left;verticalAlign=top;spacingLeft=5;" value="service_center&#xa;---------------------------------------&#xa;PK center_id : SERIAL&#xa;UQ name : VARCHAR(100)&#xa;address : VARCHAR(255)&#xa;phone : VARCHAR(20)" vertex="1">
+          <mxGeometry height="110" width="240" x="80" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gZqR9jV6j1ivc3Jsrw-t-2" parent="1" style="shape=table;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;align=left;verticalAlign=top;spacingLeft=5;" value="ticket&#xa;---------------------------------------&#xa;PK ticket_id : SERIAL&#xa;UQ ticket_code : VARCHAR(20)&#xa;FK center_id : INT&#xa;customer_name : VARCHAR(100)&#xa;customer_phone : VARCHAR(20)&#xa;status : VARCHAR(20)&#xa;created_at : TIMESTAMPTZ&#xa;---------------------------------------&#xa;► idx_ticket_center (center_id)" vertex="1">
+          <mxGeometry height="170" width="280" x="80" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="gZqR9jV6j1ivc3Jsrw-t-3" parent="1" style="shape=table;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;align=left;verticalAlign=top;spacingLeft=5;" value="survey_ticket&#xa;---------------------------------------&#xa;PK survey_id : SERIAL&#xa;FK,UQ ticket_id : INT&#xa;csat_score : SMALLINT (1-5)&#xa;nps_score : SMALLINT (0-10)&#xa;feedback_content : TEXT&#xa;created_at : TIMESTAMPTZ&#xa;---------------------------------------&#xa;► idx_survey_created (created_at)&#xa;► idx_survey_scores (csat_score, nps_score)" vertex="1">
+          <mxGeometry height="190" width="310" x="460" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="gZqR9jV6j1ivc3Jsrw-t-4" edge="1" parent="1" source="gZqR9jV6j1ivc3Jsrw-t-1" target="gZqR9jV6j1ivc3Jsrw-t-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gZqR9jV6j1ivc3Jsrw-t-5" edge="1" parent="1" source="gZqR9jV6j1ivc3Jsrw-t-2" target="gZqR9jV6j1ivc3Jsrw-t-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gZqR9jV6j1ivc3Jsrw-t-6" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#ffffcc;strokeColor=#d6b656;align=left;verticalAlign=middle;spacingLeft=5;fontSize=11;" value="Chú thích: PK: khóa chính (SERIAL) · FK: khóa ngoại · UQ: duy nhất · index: đường nổi: 1 – N (chân quạ ở phía N).&#xa;Bảng survey_ticket liên kết 1-1 với ticket khi phiếu đạt trạng thái HOAN_TAT." vertex="1">
+          <mxGeometry height="50" width="690" x="80" y="500" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
