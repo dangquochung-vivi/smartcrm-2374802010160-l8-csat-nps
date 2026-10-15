@@ -1,0 +1,97 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Architecture Diagram L8 CSAT NPS" id="I3-eY2S2vetonMiSJxlL">
+    <mxGraphModel dx="1481" dy="817" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-1" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;" value="" vertex="1">
+          <mxGeometry height="120" width="620" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontStyle=1;fontSize=11;fontColor=#271033;" value="Lớp 1 · Giao diện (React)&#xa;Trách nhiệm: hiển thị, nhập liệu, kiểm tra định dạng cơ bản; KHÔNG chứa quy tắc nghiệp vụ." vertex="1">
+          <mxGeometry height="35" width="580" x="50" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-3" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;rounded=1;fontSize=10;fontStyle=1;" value="M1 Form khảo sát CSAT/NPS&#xa;FR01, FR02, FR03" vertex="1">
+          <mxGeometry height="50" width="180" x="55" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-4" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;rounded=1;fontSize=10;fontStyle=1;" value="M2 Danh sách &amp; Lọc phản hồi&#xa;FR04, FR05" vertex="1">
+          <mxGeometry height="50" width="190" x="245" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-5" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;rounded=1;fontSize=10;fontStyle=1;" value="M3 Dashboard tổng hợp chỉ số&#xa;FR06" vertex="1">
+          <mxGeometry height="50" width="200" x="445" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-6" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;" value="" vertex="1">
+          <mxGeometry height="120" width="620" x="40" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-7" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontStyle=1;fontSize=11;fontColor=#173010;" value="Lớp 2 · API (Express – Controller / Route)&#xa;Trách nhiệm: xác thực vai trò, validate đầu vào, ánh xạ DTO, trả mã lỗi HTTP; không truy cập CSDL." vertex="1">
+          <mxGeometry height="35" width="580" x="50" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-8" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;rounded=1;fontSize=10;fontStyle=1;" value="SurveyFormController&#xa;POST /surveys/submit" vertex="1">
+          <mxGeometry height="50" width="180" x="55" y="255" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-9" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;rounded=1;fontSize=10;fontStyle=1;" value="SurveyListController&#xa;GET /surveys?filter=..." vertex="1">
+          <mxGeometry height="50" width="190" x="245" y="255" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-10" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;rounded=1;fontSize=10;fontStyle=1;" value="DashboardController&#xa;GET /surveys/dashboard" vertex="1">
+          <mxGeometry height="50" width="200" x="445" y="255" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-11" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;" value="" vertex="1">
+          <mxGeometry height="120" width="620" x="40" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-12" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontStyle=1;fontSize=11;fontColor=#3d3100;" value="Lớp 3 · Nghiệp vụ (Service)&#xa;Trách nhiệm: toàn bộ quy tắc QT-01...QT-03; điều khiển transaction; kiểm tra hợp lệ điểm CSAT/NPS." vertex="1">
+          <mxGeometry height="35" width="580" x="50" y="385" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-13" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;rounded=1;fontSize=10;fontStyle=1;" value="SurveySubmitService&#xa;QT-01, QT-02, QT-03" vertex="1">
+          <mxGeometry height="50" width="180" x="55" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-14" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;rounded=1;fontSize=10;fontStyle=1;" value="SurveyQueryService&#xa;Lọc &amp; tìm kiếm phản hồi" vertex="1">
+          <mxGeometry height="50" width="190" x="245" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-15" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;rounded=1;fontSize=10;fontStyle=1;" value="DashboardAnalyticsService&#xa;Tính toán chỉ số trung bình" vertex="1">
+          <mxGeometry height="50" width="200" x="445" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-16" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;" value="" vertex="1">
+          <mxGeometry height="120" width="620" x="40" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-17" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontStyle=1;fontSize=11;fontColor=#271033;" value="Lớp 4 · Lưu trữ (Repository + PostgreSQL)&#xa;Trách nhiệm: truy vấn/ghi dữ liệu, ràng buộc toàn vẹn (PK, FK, CHECK, UNIQUE), index; không chứa quy tắc nghiệp vụ." vertex="1">
+          <mxGeometry height="35" width="580" x="50" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-18" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;rounded=1;fontSize=11;fontStyle=1;" value="service_center" vertex="1">
+          <mxGeometry height="40" width="160" x="60" y="605" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-19" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;rounded=1;fontSize=11;fontStyle=1;" value="ticket" vertex="1">
+          <mxGeometry height="40" width="160" x="250" y="605" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-20" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;rounded=1;fontSize=11;fontStyle=1;" value="survey_ticket" vertex="1">
+          <mxGeometry height="40" width="190" x="440" y="605" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-21" edge="1" parent="1" style="shape=flexArrow;endArrow=classic;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=10;fontStyle=1;align=center;" value="HTTPS · REST/JSON · token bảo mật (Khách hàng / CSKH / Quản lý)">
+          <mxGeometry height="50" relative="1" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-22" edge="1" parent="1" style="shape=flexArrow;endArrow=classic;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=10;fontStyle=1;align=center;" value="Gọi hàm trực tiếp - truyền DTO (không truyền đối tượng HTTP)">
+          <mxGeometry height="50" relative="1" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-23" edge="1" parent="1" style="shape=flexArrow;endArrow=classic;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=10;fontStyle=1;align=center;" value="Repository interface · SQL tham số hóa (driver pg) · transaction">
+          <mxGeometry height="50" relative="1" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-24" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;strokeDasharray=3 3;strokeWidth=1.5;" value="" vertex="1">
+          <mxGeometry height="70" width="230" x="680" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-25" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=10;fontStyle=1;" value="Dịch vụ CRM / Thông báo (hệ thống ngoài)&#xa;Gửi link form khảo sát tới Khách hàng khi phiếu hoàn tất." vertex="1">
+          <mxGeometry height="60" width="220" x="685" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-26" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;rounded=1;" value="" vertex="1">
+          <mxGeometry height="150" width="230" x="680" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-27" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=10;" value="Chú thích ký hiệu&#xa;■ Hộp màu = một lớp; hộp trắng = thành phần trong lớp&#xa;↓ Mũi tên liền = gọi đồng bộ, chỉ đi xuống lớp liền kề&#xa;-- Hộp nét đứt = hệ thống ngoài&#xa;Tên bảng ở Lớp 4 khớp đúng ERD (Mục 4)&#xa;Mã FR / QT / NFR tra ở Mục 1" vertex="1">
+          <mxGeometry height="140" width="220" x="685" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-28" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;rounded=1;strokeWidth=1.5;" value="" vertex="1">
+          <mxGeometry height="110" width="230" x="680" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="6Qj64ImstKQzTd4VYxcY-29" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=10;fontColor=#b85450;" value="Ngoài phạm vi&#xa;Tiếp nhận phiếu (L2) · Phân công kỹ thuật viên (L4) · Quản lý kho linh kiện (L5) · Báo cáo doanh thu, phân loại bằng AI (L10) · Thanh toán · Đăng nhập/quản lý tài khoản (dùng dịch vụ xác thực có sẵn)" vertex="1">
+          <mxGeometry height="100" width="220" x="685" y="305" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

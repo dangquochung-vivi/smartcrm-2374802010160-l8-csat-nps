@@ -1,0 +1,79 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Use Case Diagram L8 CSAT NPS" id="rwMNb8pxaqaEM_6ak49M">
+    <mxGraphModel dx="2044" dy="1128" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-1" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontSize=13;fillColor=none;strokeColor=#2b5b84;strokeWidth=2;" value="Hệ thống Smart CRM - Luồng L8 (Khảo sát CSAT/NPS)" vertex="1">
+          <mxGeometry height="660" width="480" x="200" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-2" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontStyle=1;" value="Hệ thống CRM" vertex="1">
+          <mxGeometry height="60" width="30" x="120" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-3" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontStyle=1;" value="Khách hàng" vertex="1">
+          <mxGeometry height="60" width="30" x="120" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-4" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontStyle=1;" value="Nhân viên CSKH" vertex="1">
+          <mxGeometry height="60" width="30" x="120" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-5" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontStyle=1;" value="Quản lý / Ban giám đốc" vertex="1">
+          <mxGeometry height="60" width="30" x="770" y="565" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-6" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" value="UC01&#xa;Tự động kích hoạt &amp; gửi form" vertex="1">
+          <mxGeometry height="55" width="220" x="340" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-7" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" value="UC02&#xa;Thực hiện đánh giá CSAT &amp; NPS" vertex="1">
+          <mxGeometry height="55" width="220" x="340" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-8" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" value="UC03&#xa;Nhập ý kiến đóng góp chi tiết" vertex="1">
+          <mxGeometry height="55" width="220" x="340" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-9" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontStyle=1;" value="UC04&#xa;Xem danh sách phản hồi khảo sát" vertex="1">
+          <mxGeometry height="55" width="220" x="340" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-10" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontStyle=1;" value="UC05&#xa;Lọc và tìm kiếm phản hồi" vertex="1">
+          <mxGeometry height="55" width="220" x="340" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-11" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontStyle=1;" value="UC06&#xa;Xem Dashboard tổng hợp chỉ số" vertex="1">
+          <mxGeometry height="55" width="220" x="340" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-12" edge="1" parent="1" source="O-kir-adBGjZ6_E4UuM6-2" target="O-kir-adBGjZ6_E4UuM6-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-13" edge="1" parent="1" source="O-kir-adBGjZ6_E4UuM6-3" target="O-kir-adBGjZ6_E4UuM6-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-14" edge="1" parent="1" source="O-kir-adBGjZ6_E4UuM6-3" target="O-kir-adBGjZ6_E4UuM6-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-15" edge="1" parent="1" source="O-kir-adBGjZ6_E4UuM6-4" target="O-kir-adBGjZ6_E4UuM6-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-16" edge="1" parent="1" source="O-kir-adBGjZ6_E4UuM6-4" target="O-kir-adBGjZ6_E4UuM6-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-17" edge="1" parent="1" source="O-kir-adBGjZ6_E4UuM6-5" target="O-kir-adBGjZ6_E4UuM6-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-18" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;strokeDasharray=3 3;" value="" vertex="1">
+          <mxGeometry height="110" width="230" x="450" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-19" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontSize=11;" value="Chú thích" vertex="1">
+          <mxGeometry height="20" width="80" x="457.5" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-20" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="" vertex="1">
+          <mxGeometry height="15" width="25" x="457.5" y="765" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-21" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;" value="Use case MUST (UC01, UC02, UC03)" vertex="1">
+          <mxGeometry height="20" width="180" x="492.5" y="762" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-22" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="15" width="25" x="457.5" y="792" as="geometry" />
+        </mxCell>
+        <mxCell id="O-kir-adBGjZ6_E4UuM6-23" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;" value="Use case SHOULD / COULD" vertex="1">
+          <mxGeometry height="20" width="180" x="492.5" y="792" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
