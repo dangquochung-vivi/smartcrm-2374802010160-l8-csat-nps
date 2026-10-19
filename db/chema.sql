@@ -33,3 +33,15 @@ CREATE TABLE survey_ticket (
 -- Tạo Index hỗ trợ hiệu năng truy vấn cho NFR
 CREATE INDEX idx_survey_ticket_id ON survey_ticket(ticket_id);
 CREATE INDEX idx_survey_scores ON survey_ticket(csat_score, nps_score);
+
+-- Dữ liệu mẫu cho trung tâm dịch vụ
+INSERT INTO service_center (id, name, address) VALUES 
+(1, 'Mekong Mobile - Quận 1', '123 Nguyễn Huệ, Q1, TP.HCM'),
+(2, 'Mekong Mobile - Gò Vấp', '456 Quang Trung, Q.Gò Vấp, TP.HCM')
+ON CONFLICT DO NOTHING;
+
+-- Dữ liệu mẫu phiếu khảo sát
+INSERT INTO survey_ticket (id, ticket_code, csat_score, nps_score, feedback_content) VALUES 
+(1, 'PB-2-00001', 5, 9, 'Dịch vụ rất tốt'),
+(2, 'PB-2-00002', 4, 8, 'Thái độ phục vụ hài lòng')
+ON CONFLICT DO NOTHING;
