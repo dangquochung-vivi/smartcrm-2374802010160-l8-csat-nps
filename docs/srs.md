@@ -34,6 +34,7 @@ Hệ thống cung cấp tính năng tự động gửi biểu mẫu khảo sát 
 * UC-04: Xem danh sách phản hồi khảo sát.
 * UC-05: Lọc và tìm kiếm phản hồi theo tiêu chí.
 * UC-06: Xem Dashboard tổng hợp chỉ số.
+* UC-07 (bổ sung cho prototype): Khách hàng đăng ký/đăng nhập để gửi khảo sát; tài khoản nội bộ đăng nhập để sử dụng dashboard.
 
 ## 3. Yêu cầu chức năng (Functional Requirements)
 
@@ -43,6 +44,7 @@ Hệ thống cung cấp tính năng tự động gửi biểu mẫu khảo sát 
 * FR-L8-04 (Xem danh sách phản hồi): Cung cấp giao diện cho Nhân viên CSKH xem danh sách toàn bộ các phiếu khảo sát đã gửi về theo thời gian thực (Thuộc User Story US-04, liên quan Use Case UC-04, mức độ ưu tiên Must Have).
 * FR-L8-05 (Lọc và tìm kiếm): Hỗ trợ bộ lọc tìm kiếm phản hồi theo khoảng thời gian, theo mức điểm số, hoặc theo tên khách hàng (Thuộc User Story US-05, liên quan Use Case UC-05, mức độ ưu tiên Should Have).
 * FR-L8-06 (Hiển thị Dashboard): Cung cấp biểu đồ trực quan tổng hợp chỉ số CSAT trung bình và điểm số NPS theo tuần/tháng dành cho Quản lý (Thuộc User Story US-06, liên quan Use Case UC-06, mức độ ưu tiên Must Have).
+* FR-L8-07 (Tài khoản truy cập): Cho phép khách hàng đăng ký bằng email và mật khẩu, đăng nhập để gửi khảo sát; chỉ tài khoản nội bộ đã xác thực mới được xem danh sách và báo cáo. Mật khẩu không lưu dạng văn bản; API kiểm tra danh tính và vai trò từ token.
 
 ## 4. Yêu cầu phi chức năng (Non-functional Requirements)
 
@@ -53,6 +55,7 @@ Hệ thống cung cấp tính năng tự động gửi biểu mẫu khảo sát 
 ## 5. Giao diện người dùng dự kiến (UI Wireframe Description)
 * Màn hình Khảo sát: Thiết kế dạng Responsive tương thích tốt trên cả thiết bị di động và máy tính, bố cục trực quan với các nút bấm chọn điểm số to rõ.
 * Màn hình Dashboard Quản lý: Trình bày dạng các thẻ thống kê tổng quan kết hợp biểu đồ cột hoặc đường thể hiện xu hướng biến động chỉ số NPS qua các tháng.
+* Cổng khách hàng: Đăng ký/đăng nhập riêng và form gửi CSAT/NPS theo mã phiếu bảo hành; không hiển thị dữ liệu phản hồi của khách hàng khác.
 
 ## 6. Bảng truy vết yêu cầu (Traceability Matrix)
 
@@ -62,3 +65,7 @@ Hệ thống cung cấp tính năng tự động gửi biểu mẫu khảo sát 
 * FR-L8-04: Tương ứng với User Story US-04 (Quản lý danh sách phản hồi), liên quan Use Case UC-04, mức độ ưu tiên Must Have.
 * FR-L8-05: Tương ứng với User Story US-05 (Tìm kiếm và lọc dữ liệu khảo sát), liên quan Use Case UC-05, mức độ ưu tiên Should Have.
 * FR-L8-06: Tương ứng với User Story US-06 (Thống kê báo cáo trên Dashboard), liên quan Use Case UC-06, mức độ ưu tiên Must Have.
+* FR-L8-07: Bổ sung cho UC-07 (Đăng ký/đăng nhập và giới hạn quyền truy cập theo actor).
+
+## 7. Trạng thái prototype
+Prototype hiện có đăng nhập nội bộ, đăng ký/đăng nhập khách hàng, form gửi khảo sát và dashboard thống kê cơ bản. Tài khoản đăng ký và phản hồi đang lưu trong bộ nhớ tiến trình; chưa có tích hợp SMS/email, lọc theo các tiêu chí FR-L8-05 hoặc biểu đồ xu hướng theo thời gian của FR-L8-06. Đây là các khoảng trống triển khai, không phải yêu cầu đã hoàn tất.

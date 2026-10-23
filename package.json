@@ -1,0 +1,27 @@
+{
+  "name": "smartcrm-2374802010160-l8-csat-nps",
+  "version": "1.0.0",
+  "description": "\"# SmartCRM - L8 CSAT NPS\" \r # Smart CRM - L8 Khảo sát hài lòng CSAT / NPS",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "node src/backend/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dangquochung-vivi/smartcrm-2374802010160-l8-csat-nps.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dangquochung-vivi/smartcrm-2374802010160-l8-csat-nps/issues"
+  },
+  "homepage": "https://github.com/dangquochung-vivi/smartcrm-2374802010160-l8-csat-nps#readme",
+  "devDependencies": {
+    "jest": "^30.5.2"
+  }
+}

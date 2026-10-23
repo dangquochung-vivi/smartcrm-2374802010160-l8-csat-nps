@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng ký khách hàng | SmartCRM</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="login-page">
+    <main class="login-shell">
+      <section class="login-brand-panel customer-brand-panel">
+        <a class="login-brand" href="/login">
+          <span class="brand-mark">S</span>
+          <span>MEKONG MOBILE<br /><strong>SMARTCRM</strong></span>
+        </a>
+        <div class="login-brand-copy">
+          <p class="login-eyebrow">KHÁCH HÀNG MEKONG MOBILE</p>
+          <h1>Đánh giá dễ dàng, kết nối dài lâu.</h1>
+          <p>Tạo tài khoản để gửi và theo dõi phản hồi dịch vụ.</p>
+        </div>
+        <div class="login-brand-foot">KHẢO SÁT CSAT / NPS <span>2026</span></div>
+      </section>
+      <section class="login-main">
+        <div class="login-panel">
+          <p class="login-eyebrow">BẮT ĐẦU TẠI ĐÂY</p>
+          <h2>Tạo tài khoản</h2>
+          <p class="login-subtitle">Đăng ký để gửi đánh giá dịch vụ</p>
+          <form id="customerRegisterForm" class="login-form">
+            <label for="customerName">Họ và tên</label>
+            <input id="customerName" name="name" autocomplete="name" minlength="2" maxlength="80" placeholder="Tên của bạn" required />
+            <label for="registerEmail">Email</label>
+            <input id="registerEmail" name="email" type="email" autocomplete="email" placeholder="ban@example.com" required />
+            <label for="registerPassword">Mật khẩu</label>
+            <input id="registerPassword" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="Tối thiểu 8 ký tự" required />
+            <p id="customerAuthError" class="login-error" role="alert" aria-live="polite"></p>
+            <button class="login-submit" type="submit">Tạo tài khoản <span aria-hidden="true">→</span></button>
+          </form>
+          <p class="customer-entry">Đã có tài khoản? <a href="/customer/login">Đăng nhập</a></p>
+        </div>
+      </section>
+    </main>
+    <script src="/customer-auth.js"></script>
+  </body>
+</html>

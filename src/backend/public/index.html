@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartCRM - CSAT & NPS</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">S</div>
+          <div>
+            <p class="eyebrow">SmartCRM</p>
+            <h2>CSAT / NPS</h2>
+          </div>
+        </div>
+
+        <nav class="side-nav">
+          <a class="active" href="#overview">Tổng quan</a>
+          <a href="#surveySection">Khảo sát</a>
+          <a href="#feedbackSection">Danh sách</a>
+          <a href="#reportSection">Báo cáo</a>
+        </nav>
+
+        <div class="status-box">
+          <span class="dot"></span>
+          Hệ thống đang hoạt động
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Dashboard</p>
+            <h1>Smart CRM - L8 CSAT & NPS</h1>
+          </div>
+          <div class="topbar-actions">
+            <div class="current-user"><strong id="currentUserName"></strong><small id="currentUserRole"></small></div>
+            <button class="secondary-btn" id="logoutButton" type="button">Đăng xuất</button>
+            <button class="primary-btn" id="createSurveyButton">+ Tạo khảo sát</button>
+          </div>
+        </header>
+
+        <section class="metrics-grid" id="overview">
+          <article class="metric-card accent-blue">
+            <span class="label">Tổng phiếu</span>
+            <strong id="totalSurveys">0</strong>
+            <small>Phiếu khảo sát</small>
+          </article>
+          <article class="metric-card accent-green">
+            <span class="label">CSAT trung bình</span>
+            <strong id="avgCsat">0.0</strong>
+            <small>/ 5 điểm</small>
+          </article>
+          <article class="metric-card accent-orange">
+            <span class="label">NPS trung bình</span>
+            <strong id="avgNps">0.0</strong>
+            <small>/ 10 điểm</small>
+          </article>
+          <article class="metric-card accent-purple">
+            <span class="label">Tỷ lệ hài lòng</span>
+            <strong id="happyRate">0%</strong>
+            <small>CSAT ≥ 4</small>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <div class="panel form-panel" id="surveySection">
+            <div class="panel-header">
+              <h3>Gửi phản hồi mới</h3>
+            </div>
+
+            <form id="surveyForm">
+              <div class="field-row">
+                <label>
+                  Mã ticket
+                  <input type="text" name="ticket_code" placeholder="VD: PB-2-00010" required />
+                </label>
+              </div>
+
+              <div class="field-row two-col">
+                <label>
+                  CSAT
+                  <select name="csat_score" required>
+                    <option value="5">5 - Rất hài lòng</option>
+                    <option value="4">4 - Hài lòng</option>
+                    <option value="3">3 - Bình thường</option>
+                    <option value="2">2 - Không hài lòng</option>
+                    <option value="1">1 - Rất không hài lòng</option>
+                  </select>
+                </label>
+
+                <label>
+                  NPS
+                  <select name="nps_score" required>
+                    <option value="10">10</option>
+                    <option value="9">9</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                    <option value="0">0</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="field-row">
+                <label>
+                  Phản hồi chi tiết
+                  <textarea name="feedback_content" rows="4" placeholder="Mô tả cảm nhận của khách hàng..." required></textarea>
+                </label>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="primary-btn">Lưu khảo sát</button>
+                <button type="reset" class="secondary-btn">Làm mới</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="panel table-panel" id="feedbackSection">
+            <div class="panel-header">
+              <h3>Danh sách phản hồi</h3>
+              <span id="statusBadge" class="badge">Đang tải...</span>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Ticket</th>
+                    <th>CSAT</th>
+                    <th>NPS</th>
+                    <th>Phản hồi</th>
+                  </tr>
+                </thead>
+                <tbody id="surveyTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel report-panel" id="reportSection">
+          <div class="panel-header">
+            <h3>Báo cáo đánh giá khách hàng</h3>
+          </div>
+          <div id="reportInsights" class="report-grid"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
