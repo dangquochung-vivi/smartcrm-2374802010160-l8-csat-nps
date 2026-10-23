@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gửi đánh giá | SmartCRM</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="customer-page">
+    <header class="customer-header">
+      <a class="login-brand customer-logo" href="/customer">
+        <span class="brand-mark">S</span>
+        <span>MEKONG MOBILE<br /><strong>SMARTCRM</strong></span>
+      </a>
+      <div class="customer-profile">
+        <span id="customerGreeting">Khách hàng</span>
+        <button id="customerLogout" class="secondary-btn" type="button">Đăng xuất</button>
+      </div>
+    </header>
+    <main class="customer-main">
+      <div class="customer-intro">
+        <p class="login-eyebrow">PHẢN HỒI DỊCH VỤ</p>
+        <h1>Trải nghiệm của bạn thế nào?</h1>
+        <p>Đánh giá của bạn giúp Mekong Mobile cải thiện chất lượng phục vụ.</p>
+      </div>
+      <form id="customerSurveyForm" class="customer-survey-form">
+        <label for="ticketCode">Mã phiếu bảo hành</label>
+        <input id="ticketCode" name="ticket_code" placeholder="Ví dụ: PB-2-00010" required />
+
+        <fieldset class="rating-fieldset">
+          <legend>Mức độ hài lòng (CSAT)</legend>
+          <div class="rating-options csat-options">
+            <label><input type="radio" name="csat_score" value="1" required /><span>1<small>Rất không hài lòng</small></span></label>
+            <label><input type="radio" name="csat_score" value="2" /><span>2<small>Không hài lòng</small></span></label>
+            <label><input type="radio" name="csat_score" value="3" /><span>3<small>Bình thường</small></span></label>
+            <label><input type="radio" name="csat_score" value="4" /><span>4<small>Hài lòng</small></span></label>
+            <label><input type="radio" name="csat_score" value="5" /><span>5<small>Rất hài lòng</small></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="rating-fieldset">
+          <legend>Khả năng giới thiệu dịch vụ (NPS)</legend>
+          <div class="rating-options nps-options">
+            <label><input type="radio" name="nps_score" value="0" required /><span>0</span></label>
+            <label><input type="radio" name="nps_score" value="1" /><span>1</span></label>
+            <label><input type="radio" name="nps_score" value="2" /><span>2</span></label>
+            <label><input type="radio" name="nps_score" value="3" /><span>3</span></label>
+            <label><input type="radio" name="nps_score" value="4" /><span>4</span></label>
+            <label><input type="radio" name="nps_score" value="5" /><span>5</span></label>
+            <label><input type="radio" name="nps_score" value="6" /><span>6</span></label>
+            <label><input type="radio" name="nps_score" value="7" /><span>7</span></label>
+            <label><input type="radio" name="nps_score" value="8" /><span>8</span></label>
+            <label><input type="radio" name="nps_score" value="9" /><span>9</span></label>
+            <label><input type="radio" name="nps_score" value="10" /><span>10</span></label>
+          </div>
+          <div class="rating-ends"><span>Không có khả năng</span><span>Rất có khả năng</span></div>
+        </fieldset>
+
+        <label for="feedbackContent">Chia sẻ thêm về trải nghiệm</label>
+        <textarea id="feedbackContent" name="feedback_content" maxlength="500" rows="4" placeholder="Ý kiến của bạn (không bắt buộc)"></textarea>
+        <p id="customerSurveyMessage" class="customer-survey-message" role="status" aria-live="polite"></p>
+        <button id="submitCustomerSurvey" class="login-submit" type="submit">Gửi đánh giá <span aria-hidden="true">→</span></button>
+      </form>
+      <p class="customer-privacy">Thông tin của bạn chỉ được dùng để hỗ trợ và cải thiện dịch vụ.</p>
+    </main>
+    <script src="/customer.js"></script>
+  </body>
+</html>

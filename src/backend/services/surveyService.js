@@ -5,6 +5,10 @@ class SurveyService {
     return await surveyRepository.findAll();
   }
 
+  async getStats() {
+    return await surveyRepository.getStats();
+  }
+
   async submitSurvey(data) {
     const { csat_score, nps_score } = data;
     if (csat_score < 1 || csat_score > 5) {

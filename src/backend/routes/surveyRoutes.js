@@ -2,6 +2,15 @@ const express = require('express');
 const router = express.Router();
 const surveyService = require('../services/surveyService');
 
+router.get('/stats', async (req, res) => {
+  try {
+    const stats = await surveyService.getStats();
+    res.json({ success: true, data: stats });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 // GET /surveys - Danh sách khảo sát (M2/M3)
 router.get('/', async (req, res) => {
   try {
