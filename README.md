@@ -28,16 +28,54 @@ Khảo sát hiện được lưu trong bộ nhớ của tiến trình. PostgreSQ
 **Chưa hoàn tất theo SRS:** tự động gửi link khảo sát qua SMS/email sau khi ticket Closed, lọc theo thời gian/tên khách hàng, biểu đồ theo tuần/tháng và lưu phản hồi bền vững trong PostgreSQL. Portal khách hiện nhận phản hồi thủ công qua form; không nên xem các mục trên là đã đạt chỉ vì API/dashboard đang chạy.
 
 ## 4. Chạy ứng dụng
-Yêu cầu Node.js 18 trở lên.
+Yêu cầu Node.js 18 trở lên và Git.
 
+1. Clone repository:
 ```bash
-cd src/backend
-npm install
-cd ../..
+git clone https://github.com/dangquochung-vivi/smartcrm-2374802010160-l8-csat-nps.git
+```
+
+2. Vào thư mục dự án:
+```bash
+cd smartcrm-2374802010160-l8-csat-nps
+```
+
+3. Cài đúng dependency backend từ lockfile:
+```bash
+npm --prefix src/backend ci
+```
+
+4. Nếu cần kiểm tra kết nối PostgreSQL, tạo `.env` từ `.env.example`.
+
+PowerShell:
+```powershell
+Copy-Item .env.example .env
+```
+
+Git Bash:
+```bash
+cp .env.example .env
+```
+
+Điền thông tin database và `SECRET_KEY` trong `.env`. Không commit file này. PostgreSQL không bắt buộc để chạy demo khảo sát hiện tại.
+
+5. Khởi động từ thư mục gốc dự án:
+```bash
 npm start
 ```
 
-Tạo `.env` từ `.env.example` nếu cần cấu hình database. `SECRET_KEY` nên được đặt thành chuỗi ngẫu nhiên riêng; không commit `.env`. Mặc định ứng dụng chạy tại `http://localhost:3000`.
+6. Mở giao diện nội bộ:
+```text
+http://localhost:3000/login
+```
+
+7. Chạy test trong terminal khác:
+```bash
+npm --prefix src/backend test -- --runInBand
+```
+
+### Kết quả kiểm tra bản clone sạch
+Đã clone repository vào thư mục tạm, cài dependency bằng `npm --prefix src/backend ci`, chạy test backend và khởi động server từ thư mục gốc. Luồng đăng ký khách hàng và gửi khảo sát đã được kiểm tra qua giao diện/API. Phản hồi khảo sát hiện vẫn lưu trong RAM, không phải PostgreSQL.
 
 ## 5. Đăng nhập demo
 Mở `http://localhost:3000/login`. Tài khoản demo có thể đăng nhập nhanh bằng các nút trên trang; hoặc dùng mật khẩu chung `demo123`:
@@ -68,14 +106,18 @@ Mở `http://localhost:3000/login`. Tài khoản demo có thể đăng nhập nh
 - `GET /health`: kiểm tra server.
 - `GET /db-check`: kiểm tra kết nối PostgreSQL, yêu cầu đăng nhập.
 
-## 8. Kiểm thử
-```bash
-npm --prefix src/backend test -- --runInBand
-```
-
-Test bao gồm xác thực mật khẩu, chữ ký JWT, token hết hạn và các nghiệp vụ thống kê/khảo sát.
-
-## 9. Tài liệu
+## 8. Tài liệu
 - Yêu cầu: `docs/srs.md`
 - Nhật ký thay đổi thiết kế: `docs/thay-doi-thiet-ke.md`
 - Schema: `db/chema.sql`
+
+## 9. Khai báo sử dụng AI
+- **Họ và tên:** Đặng Quốc Hùng
+- **MSSV:** 2374802010160
+- **Ngày:** 23/10/2026
+
+| Công cụ | Phần được hỗ trợ | Cách kiểm tra |
+|---|---|---|
+| GitHub Copilot | Hỗ trợ chỉnh sửa giao diện, xác thực, cổng khách hàng, test và tài liệu L8 | Đối chiếu SRS/luồng L8; chạy test backend; thử đăng ký, đăng nhập và gửi khảo sát trên bản clone sạch |
+
+**Cam kết:** Sinh viên xác nhận đã tự rà soát mã nguồn, tài liệu và kết quả kiểm thử, đồng thời chịu trách nhiệm về nội dung nộp. Chỉ giữ cam kết này sau khi đã tự kiểm tra và đồng ý.
