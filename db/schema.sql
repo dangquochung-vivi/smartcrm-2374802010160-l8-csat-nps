@@ -1,5 +1,13 @@
 -- Schema for SmartCRM L8 and the SE ticket/center CRUD module.
 
+CREATE TABLE IF NOT EXISTS customer_account (
+    email VARCHAR(254) PRIMARY KEY,
+    name VARCHAR(80) NOT NULL,
+    password_salt BYTEA NOT NULL CHECK (octet_length(password_salt) = 16),
+    password_hash BYTEA NOT NULL CHECK (octet_length(password_hash) = 64),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE IF NOT EXISTS service_center (
     center_id SERIAL PRIMARY KEY,
     center_name VARCHAR(100) NOT NULL UNIQUE,

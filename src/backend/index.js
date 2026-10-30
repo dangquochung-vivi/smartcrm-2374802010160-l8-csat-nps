@@ -37,26 +37,48 @@ app.get('/operations', (req, res) => {
     res.sendFile(path.join(publicDirectory, 'operations.html'));
 });
 
+app.get('/survey/list', (req, res) => {
+    res.sendFile(path.join(publicDirectory, 'survey-list.html'));
+});
+
 app.get('/index.html', (req, res) => {
     res.sendFile(path.join(publicDirectory, 'index.html'));
 });
 
-function requireAuth(req, res, next) {
+async function requireAuth(req, res, next) {
     const authorization = req.headers.authorization || '';
     const token = authorization.startsWith('Bearer ') ? authorization.slice(7) : '';
-    const user = authService.verifyToken(token, jwtSecret);
 
     for (const [revokedToken, expiresAt] of revokedTokens) {
         if (expiresAt <= Date.now()) revokedTokens.delete(revokedToken);
     }
 
-    if (!user || revokedTokens.has(token)) {
+    const tokenUser = authService.verifyToken(token, jwtSecret);
+    if (!tokenUser || revokedTokens.has(token)) {
         return res.status(401).json({ success: false, code: 'UNAUTHENTICATED', error: 'Vui lòng đăng nhập lại' });
     }
 
-    req.user = user;
-    req.token = token;
-    next();
+    try {
+        const account = await authService.getAccount(tokenUser.username);
+        if (!account || tokenUser.role !== account.role || tokenUser.name !== account.name) {
+            return res.status(401).json({ success: false, code: 'UNAUTHENTICATED', error: 'Vui lòng đăng nhập lại' });
+        }
+        req.user = {
+            username: account.username,
+            ...(account.email ? { email: account.email } : {}),
+            name: account.name,
+            role: account.role
+        };
+        req.token = token;
+        return next();
+    } catch (error) {
+        console.error('Authentication lookup failed:', error.message);
+        return res.status(503).json({
+            success: false,
+            code: 'AUTH_UNAVAILABLE',
+            error: 'Không thể xác thực tài khoản lúc này; vui lòng kiểm tra kết nối PostgreSQL'
+        });
+    }
 }
 
 function issueToken(res, account) {
@@ -68,26 +90,42 @@ app.get('/auth/demo-accounts', (req, res) => {
     res.json({ success: true, data: authService.getDemoAccounts() });
 });
 
-app.post('/auth/login', (req, res) => {
-    const account = authService.getAccount(req.body?.username);
-    if (!authService.verifyPassword(account, req.body?.password)) {
-        return res.status(401).json({ success: false, code: 'INVALID_CREDENTIALS', error: 'Tên đăng nhập hoặc mật khẩu không đúng' });
+app.post('/auth/login', async (req, res) => {
+    try {
+        const account = await authService.getAccount(req.body?.username);
+        if (!authService.verifyPassword(account, req.body?.password)) {
+            return res.status(401).json({ success: false, code: 'INVALID_CREDENTIALS', error: 'Tên đăng nhập hoặc mật khẩu không đúng' });
+        }
+        return issueToken(res, { username: account.username, name: account.name, role: account.role, ...(account.email ? { email: account.email } : {}) });
+    } catch (error) {
+        console.error('Login failed:', error.message);
+        return res.status(503).json({ success: false, code: 'AUTH_UNAVAILABLE', error: 'Không thể đăng nhập lúc này; vui lòng kiểm tra kết nối PostgreSQL' });
     }
-    issueToken(res, { username: account.username, name: account.name, role: account.role });
 });
 
-app.post('/auth/register', (req, res) => {
+app.post('/auth/register', async (req, res) => {
     try {
-        const account = authService.registerCustomer(req.body || {});
-        issueToken(res, account);
+        const account = await authService.registerCustomer(req.body || {});
+        return issueToken(res, account);
     } catch (error) {
-        const status = error.code === 'EMAIL_EXISTS' ? 409 : 400;
-        res.status(status).json({ success: false, code: error.code || 'INVALID_REGISTRATION', error: error.message });
+        if (error.code === 'EMAIL_EXISTS') {
+            return res.status(409).json({ success: false, code: error.code, error: error.message });
+        }
+        if (error.code === 'INVALID_REGISTRATION') {
+            return res.status(400).json({ success: false, code: error.code, error: error.message });
+        }
+        console.error('Customer registration failed:', error.message);
+        return res.status(503).json({
+            success: false,
+            code: 'REGISTRATION_UNAVAILABLE',
+            error: 'Không thể lưu tài khoản lúc này; vui lòng kiểm tra kết nối PostgreSQL'
+        });
     }
 });
 
 app.post('/auth/demo-login', (req, res) => {
-    const account = authService.getAccount(req.body?.username);
+    const username = String(req.body?.username || '').trim().toLowerCase();
+    const account = authService.getDemoAccounts().find((item) => item.username === username);
     if (!account) {
         return res.status(400).json({ success: false, error: 'Tài khoản demo không hợp lệ' });
     }
@@ -120,15 +158,17 @@ app.get('/db-check', requireAuth, async (req, res) => {
 // Khai báo Routes cho module khảo sát CSAT & NPS (Luồng L8)
 const surveyRoutes = require('./routes/surveyRoutes');
 app.use('/surveys', requireAuth, (req, res, next) => {
-    if (req.method === 'GET' && req.user.role === 'customer') {
+    if (req.path === '/ticket-check' && req.user.role !== 'customer') {
+        return res.status(403).json({ success: false, code: 'FORBIDDEN', error: 'Chỉ khách hàng mới có thể tìm phiếu để gửi khảo sát' });
+    }
+    if (req.user.role === 'customer' && req.method === 'GET' && req.path !== '/ticket-check') {
         return res.status(403).json({ success: false, code: 'FORBIDDEN', error: 'Khách hàng không có quyền xem danh sách nội bộ' });
     }
-    if (req.method === 'POST' && req.user.role === 'customer') {
-        req.body = {
-            ...req.body,
-            customer_email: req.user.email,
-            customer_name: req.user.name
-        };
+    if (req.method === 'POST' && req.user.role !== 'customer') {
+        return res.status(403).json({ success: false, code: 'FORBIDDEN', error: 'Chỉ khách hàng mới có thể gửi khảo sát' });
+    }
+    if (req.user.role === 'customer' && req.method !== 'GET' && req.method !== 'POST') {
+        return res.status(403).json({ success: false, code: 'FORBIDDEN', error: 'Không có quyền thực hiện thao tác này' });
     }
     next();
 }, surveyRoutes);

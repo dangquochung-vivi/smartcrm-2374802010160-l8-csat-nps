@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const customerAccountRepository = require('../repositories/customerAccountRepository');
 
 const DEMO_PASSWORD = 'demo123';
 const TOKEN_LIFETIME_SECONDS = 4 * 60 * 60;
@@ -14,8 +15,6 @@ const demoAccounts = [
     passwordHash: crypto.scryptSync(DEMO_PASSWORD, salt, 64)
   };
 });
-const customerAccounts = new Map();
-
 function toBase64Url(value) {
   return Buffer.from(value).toString('base64url');
 }
@@ -33,49 +32,56 @@ function getDemoAccounts() {
   return demoAccounts.map(publicAccount);
 }
 
-function getAccount(username) {
+async function getAccount(username) {
   const normalizedUsername = String(username || '').trim().toLowerCase();
-  return demoAccounts.find((account) => account.username === normalizedUsername)
-    || customerAccounts.get(normalizedUsername)
-    || null;
+  const demoAccount = demoAccounts.find((account) => account.username === normalizedUsername);
+  if (demoAccount) return demoAccount;
+  return customerAccountRepository.findByEmail(normalizedUsername);
 }
 
 function verifyPassword(account, password) {
-  if (!account || typeof password !== 'string') return false;
+  if (!account || typeof password !== 'string'
+    || !Buffer.isBuffer(account.salt) || !Buffer.isBuffer(account.passwordHash)
+    || account.passwordHash.length !== 64) return false;
   const candidate = crypto.scryptSync(password, account.salt, 64);
   return crypto.timingSafeEqual(candidate, account.passwordHash);
 }
 
-function registerCustomer({ name, email, password }) {
+async function registerCustomer({ name, email, password }) {
   const normalizedEmail = String(email || '').trim().toLowerCase();
   const normalizedName = String(name || '').trim();
+  const invalid = (message) => {
+    const error = new Error(message);
+    error.code = 'INVALID_REGISTRATION';
+    throw error;
+  };
 
   if (normalizedName.length < 2 || normalizedName.length > 80) {
-    throw new Error('Họ tên cần có từ 2 đến 80 ký tự');
+    invalid('Họ tên cần có từ 2 đến 80 ký tự');
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
-    throw new Error('Email không hợp lệ');
+  if (normalizedEmail.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
+    invalid('Email không hợp lệ');
   }
   if (typeof password !== 'string' || password.length < 8) {
-    throw new Error('Mật khẩu cần có ít nhất 8 ký tự');
+    invalid('Mật khẩu cần có ít nhất 8 ký tự');
   }
-  if (getAccount(normalizedEmail)) {
-    const error = new Error('Email này đã được đăng ký');
-    error.code = 'EMAIL_EXISTS';
+  const salt = crypto.randomBytes(16);
+  const passwordHash = crypto.scryptSync(password, salt, 64);
+  try {
+    return await customerAccountRepository.create({
+      email: normalizedEmail,
+      name: normalizedName,
+      salt,
+      passwordHash
+    });
+  } catch (error) {
+    if (error.code === '23505') {
+      const duplicateError = new Error('Email này đã được đăng ký');
+      duplicateError.code = 'EMAIL_EXISTS';
+      throw duplicateError;
+    }
     throw error;
   }
-
-  const salt = crypto.randomBytes(16);
-  const account = {
-    username: normalizedEmail,
-    email: normalizedEmail,
-    name: normalizedName,
-    role: 'customer',
-    salt,
-    passwordHash: crypto.scryptSync(password, salt, 64)
-  };
-  customerAccounts.set(normalizedEmail, account);
-  return publicAccount(account);
 }
 
 function signToken(account, secret, nowSeconds = Math.floor(Date.now() / 1000)) {
@@ -116,9 +122,14 @@ function verifyToken(token, secret, nowSeconds = Math.floor(Date.now() / 1000)) 
   if (!crypto.timingSafeEqual(providedSignature, expectedSignature)) return null;
   if (!Number.isInteger(payload.exp) || payload.exp <= nowSeconds) return null;
 
-  const account = getAccount(payload.sub);
-  if (!account || payload.role !== account.role || payload.name !== account.name) return null;
-  return publicAccount(account);
+  if (typeof payload.sub !== 'string' || typeof payload.name !== 'string'
+    || typeof payload.role !== 'string') return null;
+  return {
+    username: payload.sub,
+    name: payload.name,
+    role: payload.role,
+    ...(payload.role === 'customer' ? { email: payload.sub } : {})
+  };
 }
 
 module.exports = {

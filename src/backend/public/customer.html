@@ -21,12 +21,23 @@
       <div class="customer-intro">
         <p class="login-eyebrow">PHẢN HỒI DỊCH VỤ</p>
         <h1>Trải nghiệm của bạn thế nào?</h1>
-        <p>Đánh giá của bạn giúp Mekong Mobile cải thiện chất lượng phục vụ.</p>
+        <p>Tìm phiếu bảo hành bằng mã phiếu và số điện thoại đăng ký, sau đó gửi đánh giá để giúp Mekong Mobile cải thiện chất lượng phục vụ.</p>
       </div>
-      <form id="customerSurveyForm" class="customer-survey-form">
+      <form id="ticketSearchForm" class="customer-survey-form">
+        <h2>Tìm phiếu bảo hành</h2>
         <label for="ticketCode">Mã phiếu bảo hành</label>
-        <input id="ticketCode" name="ticket_code" placeholder="Ví dụ: PB-2-00010" required />
+        <input id="ticketCode" name="ticket_code" maxlength="20" placeholder="Ví dụ: PB-2-00010" required />
+        <label for="customerPhone">Số điện thoại đã đăng ký trên phiếu</label>
+        <input id="customerPhone" name="customer_phone" type="tel" maxlength="20" autocomplete="tel" placeholder="Ví dụ: 0901234567" required />
+        <p id="ticketSearchMessage" class="customer-survey-message" role="status" aria-live="polite"></p>
+        <button id="searchTicketButton" class="login-submit" type="submit">Tìm phiếu <span aria-hidden="true">→</span></button>
+      </form>
 
+      <form id="customerSurveyForm" class="customer-survey-form" hidden>
+        <div id="ticketSummary" class="ticket-summary" role="status"></div>
+        <input id="surveyTicketCode" name="ticket_code" type="hidden" />
+        <input id="surveyCustomerPhone" name="customer_phone" type="hidden" />
+        <div id="surveyFields" hidden>
         <fieldset class="rating-fieldset">
           <legend>Mức độ hài lòng (CSAT)</legend>
           <div class="rating-options csat-options">
@@ -60,6 +71,7 @@
         <textarea id="feedbackContent" name="feedback_content" maxlength="500" rows="4" placeholder="Ý kiến của bạn (không bắt buộc)"></textarea>
         <p id="customerSurveyMessage" class="customer-survey-message" role="status" aria-live="polite"></p>
         <button id="submitCustomerSurvey" class="login-submit" type="submit">Gửi đánh giá <span aria-hidden="true">→</span></button>
+        </div>
       </form>
       <p class="customer-privacy">Thông tin của bạn chỉ được dùng để hỗ trợ và cải thiện dịch vụ.</p>
     </main>
