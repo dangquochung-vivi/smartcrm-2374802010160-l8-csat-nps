@@ -10,7 +10,7 @@ class SurveyRepository {
        FROM ticket
        WHERE ticket.ticket_code = $1
          AND regexp_replace(ticket.customer_phone, '[^0-9]', '', 'g') = regexp_replace($2, '[^0-9]', '', 'g')
-         AND UPPER(ticket.status) IN ('HOAN_TAT', 'CLOSED', 'RESOLVED', 'COMPLETED')`,
+         AND UPPER(ticket.status) IN ('HOAN_TAT', 'DA_DONG', 'CLOSED', 'RESOLVED', 'COMPLETED')`,
       [ticketCode, customerPhone]
     );
     return result.rows[0] || null;
@@ -42,18 +42,23 @@ class SurveyRepository {
     const result = await pool.query(
       `SELECT COUNT(*)::INTEGER AS total,
               COALESCE(AVG(csat_score), 0)::NUMERIC(4,1) AS "avgCsat",
-              COALESCE(AVG(nps_score), 0)::NUMERIC(4,1) AS "avgNps",
+              AVG(nps_score)::NUMERIC(4,1) AS "avgNps",
               COALESCE(100.0 * COUNT(*) FILTER (WHERE csat_score >= 4) / NULLIF(COUNT(*), 0), 0)::NUMERIC(5,0) AS "happyRate",
-              COALESCE(100.0 * COUNT(*) FILTER (WHERE nps_score >= 9) / NULLIF(COUNT(*), 0), 0)::NUMERIC(5,0) AS "promoterRate"
+              COUNT(nps_score)::INTEGER AS "npsResponses",
+              CASE WHEN COUNT(nps_score) > 0
+                THEN (100.0 * COUNT(*) FILTER (WHERE nps_score >= 9) / COUNT(nps_score))::NUMERIC(5,0)
+                ELSE NULL
+              END AS "promoterRate"
        FROM survey_ticket`
     );
     const stats = result.rows[0];
     return {
       total: Number(stats.total),
       avgCsat: Number(stats.avgCsat),
-      avgNps: Number(stats.avgNps),
+      avgNps: stats.avgNps === null ? null : Number(stats.avgNps),
       happyRate: Number(stats.happyRate),
-      promoterRate: Number(stats.promoterRate)
+      npsResponses: Number(stats.npsResponses),
+      promoterRate: stats.promoterRate === null ? null : Number(stats.promoterRate)
     };
   }
 
@@ -64,7 +69,7 @@ class SurveyRepository {
        FROM ticket
        WHERE ticket_code = $1
          AND regexp_replace(customer_phone, '[^0-9]', '', 'g') = regexp_replace($5, '[^0-9]', '', 'g')
-         AND UPPER(status) IN ('HOAN_TAT', 'CLOSED', 'RESOLVED', 'COMPLETED')
+         AND UPPER(status) IN ('HOAN_TAT', 'DA_DONG', 'CLOSED', 'RESOLVED', 'COMPLETED')
        RETURNING survey_id AS id, ticket_id, csat_score, nps_score, feedback_content, created_at`,
       [data.ticket_code, data.csat_score, data.nps_score, data.feedback_content, data.customer_phone]
     );

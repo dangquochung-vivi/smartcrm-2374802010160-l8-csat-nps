@@ -7,7 +7,7 @@
 ## 1. Mô tả
 SmartCRM đo lường mức độ hài lòng sau dịch vụ bảo hành của Mekong Mobile.
 
-Luồng L8: phiếu bảo hành hoàn tất (Closed) → khách hàng đăng ký/đăng nhập → gửi điểm CSAT/NPS và nhận xét → hệ thống ghi nhận phản hồi → nhân viên CSKH và quản lý xem danh sách, thống kê.
+Luồng L8: phiếu bảo hành hoàn tất (Closed) → khách hàng đăng ký/đăng nhập → gửi điểm CSAT/NPS và nhận xét → hệ thống ghi nhận phản hồi → nhân viên CSKH và quản lý xem danh sách, thống kê. Seed có sẵn là mẫu rút gọn từ dataset mô phỏng Mekong Mobile do học phần cung cấp.
 
 Các actor theo bài: Khách hàng, Bộ phận Marketing, Nhân viên CSKH, Quản lý/Ban giám đốc và Hệ thống CRM.
 
@@ -30,7 +30,7 @@ Phiếu bảo hành, trung tâm, khảo sát và tài khoản khách đã đăng
 ## 4. Chạy ứng dụng
 ### Cài đặt và chạy trên Windows
 
-Làm lần lượt từ đầu đến cuối. Bạn **không cần mở Query Tool, không cần viết hoặc chạy câu lệnh SQL**. Lệnh `db:setup` ở bước 6 sẽ tự tạo các bảng và dữ liệu mẫu.
+Làm lần lượt từ đầu đến cuối. Bạn **không cần mở Query Tool, không cần viết hoặc chạy câu lệnh SQL**. Lệnh `db:setup` ở bước 6 sẽ tự tạo các bảng và nạp mẫu ticket/CSAT từ dataset đề.
 
 #### A. Cài các chương trình cần thiết (chỉ làm một lần)
 
@@ -91,7 +91,7 @@ Nếu không thấy server trong pgAdmin: nhấp chuột phải **Servers** → 
    ```powershell
    npm --prefix src/backend run db:setup
    ```
-   Chờ đến khi thấy `Database schema and sample data are ready.`. Lệnh này tự kết nối database `smartcrm`, tạo các bảng cần thiết (kể cả bảng tài khoản khách hàng) và nạp dữ liệu demo. Chạy lệnh này cả khi cập nhật dự án. Bạn không phải thao tác gì trong Query Tool.
+   Chờ đến khi thấy `Database schema and assignment sample data are ready`. Lệnh này tự tạo các bảng cần thiết và nạp 300 phiếu mẫu cùng các phản hồi CSAT trong dataset. Phản hồi lịch sử không có điểm NPS sẽ hiển thị `—`; khảo sát mới do khách gửi vẫn yêu cầu CSAT và NPS. Chạy lại lệnh không tạo bản ghi trùng.
 7. Khởi động ứng dụng:
    ```powershell
    npm start
@@ -111,6 +111,22 @@ Các trang trong ứng dụng:
 - Sau khi sửa lỗi, chạy lại `npm --prefix src/backend run db:setup`. Có thể chạy lại lệnh này an toàn.
 
 Để tắt ứng dụng, quay lại cửa sổ PowerShell chạy server và nhấn `Ctrl + C`.
+
+### Nạp toàn bộ dataset đề (không bắt buộc)
+
+Repo chỉ chứa mẫu nhỏ theo quy định dataset; không commit các CSV lớn. Để nạp dữ liệu đầy đủ:
+
+1. Đặt file `CDTN1_Mekong Mobile_Dataset Smart CRM.zip` trong Downloads.
+2. Tại thư mục gốc dự án, giải nén vào thư mục dữ liệu bị Git bỏ qua:
+   ```powershell
+   Expand-Archive -LiteralPath "$HOME\Downloads\CDTN1_Mekong Mobile_Dataset Smart CRM.zip" -DestinationPath "data\raw"
+   ```
+3. Import danh mục, phiếu và phản hồi:
+   ```powershell
+   npm --prefix src/backend run db:import-dataset -- data/raw/dataset
+   ```
+
+Lệnh chỉ dùng các file `service_centers.csv`, `tickets_history.csv`, `survey_responses.csv`, `customers_raw.csv` và `products.csv`. Phiếu thiếu số điện thoại bị bỏ qua vì khách cần số điện thoại để xác minh; số điện thoại dạng `+84` hoặc có dấu chấm được chuẩn hóa. Lệnh không xóa dữ liệu hiện có và có thể chạy lại an toàn.
 
 **Chạy kiểm thử:** Mở PowerShell thứ hai tại thư mục dự án (không tắt cửa sổ server nếu đang demo):
 ```powershell
@@ -162,15 +178,21 @@ Mở `http://localhost:3000/login`. Tài khoản demo có thể đăng nhập nh
 - `GET /health`: kiểm tra server.
 - `GET /db-check`: kiểm tra kết nối PostgreSQL, yêu cầu đăng nhập.
 
-## 8. Tài liệu
+## 8. Dataset đề
+- Dataset mô phỏng, không phải dữ liệu khách hàng thật. Track SE dùng các trung tâm bảo hành, phiếu lịch sử và phản hồi khảo sát trong bộ đề.
+- `db:setup` nạp mẫu 300 phiếu đã chuẩn hóa từ dataset; không commit CSV toàn bộ.
+- Dataset chỉ có điểm CSAT 1–5, không có NPS. NPS lịch sử được lưu `NULL`, không tự tạo điểm; NPS chỉ có từ khảo sát mới.
+- Hướng dẫn mapping, giới hạn và import full: `docs/dataset-import.md`.
+
+## 9. Tài liệu
 - Yêu cầu: `docs/srs.md`
 - Nhật ký thay đổi thiết kế: `docs/thay-doi-thiet-ke.md`
 - Nhật ký lỗi: `docs/bug-log.md`
 - Hướng dẫn xem tài khoản khách hàng trong pgAdmin: `docs/tai-khoan-khach-hang.md`
 - Schema/migration: `db/schema.sql`
-- Dữ liệu demo chạy lại an toàn: `db/seed.sql`
+- Seed sample có thể chạy lại an toàn: `data/sample/tickets.csv`, `db/seed.sql`
 
-## 9. Checklist demo Buổi 12 (C1-C7)
+## 10. Checklist demo Buổi 12 (C1-C7)
 - **C1:** clone repo và làm đúng các bước ở mục 4 trong thư mục mới.
 - **C2:** lần theo `routes` → `services` → `repositories`; service không nhận `req/res`.
 - **C3:** tại `/operations`, demo CRUD cho trung tâm và phiếu; database có schema và seed.
@@ -181,7 +203,7 @@ Mở `http://localhost:3000/login`. Tài khoản demo có thể đăng nhập nh
 
 Trước khi nộp, commit phiên bản đã kiểm tra, sau đó đẩy tag `v0.2` riêng (`git push origin v0.2`). `git push` nhánh không tự đẩy tag.
 
-## 10. Khai báo sử dụng AI
+## 11. Khai báo sử dụng AI
 - **Họ và tên:** Đặng Quốc Hùng
 - **MSSV:** 2374802010160
 - **Ngày:** 23/10/2026

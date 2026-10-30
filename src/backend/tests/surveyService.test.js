@@ -54,6 +54,12 @@ describe('surveyService', () => {
     expect(repository.findCustomerTicket).toHaveBeenCalledWith('DEMO-VALID-01', '0901234567');
   });
 
+  test('normalizes international and dotted phone numbers before ticket lookup', async () => {
+    await surveyService.findCustomerTicket('DEMO-VALID-01', '+84 903.123.456');
+
+    expect(repository.findCustomerTicket).toHaveBeenCalledWith('DEMO-VALID-01', '0903123456');
+  });
+
   test('normalizes admin search text before listing matching surveys', async () => {
     repository.findAll.mockResolvedValue([]);
 
@@ -70,8 +76,8 @@ describe('surveyService', () => {
 
   test.each([
     ['', '0901234567', 'Vui lòng nhập mã phiếu từ 1 đến 20 ký tự'],
-    ['DEMO-VALID-01', '123', 'Số điện thoại cần có từ 7 đến 20 ký tự hợp lệ'],
-    ['DEMO-VALID-01', '+++++++', 'Số điện thoại cần có từ 7 đến 20 ký tự hợp lệ']
+    ['DEMO-VALID-01', '123', 'Số điện thoại cần có từ 7 đến 15 chữ số hợp lệ'],
+    ['DEMO-VALID-01', '+++++++', 'Số điện thoại cần có từ 7 đến 15 chữ số hợp lệ']
   ])('rejects invalid ticket search input', async (code, phone, message) => {
     await expect(surveyService.findCustomerTicket(code, phone))
       .rejects.toMatchObject({ code: 'INVALID_TICKET_LOOKUP', message });
@@ -100,10 +106,23 @@ describe('surveyService', () => {
     })).resolves.toMatchObject({ csat_score: 5, nps_score: 10 });
   });
 
+  test('normalizes international phone numbers before saving a survey', async () => {
+    await surveyService.submitSurvey({
+      ticket_code: 'DEMO-VALID-01',
+      customer_phone: '+84 903.123.456',
+      csat_score: 4,
+      nps_score: 8
+    });
+
+    expect(repository.create).toHaveBeenCalledWith(expect.objectContaining({
+      customer_phone: '0903123456'
+    }));
+  });
+
   test.each([
     [null, 'Dữ liệu khảo sát không hợp lệ'],
     [{ ticket_code: '', csat_score: 5, nps_score: 10 }, 'Mã phiếu cần có từ 1 đến 20 ký tự'],
-    [{ ticket_code: 'DEMO-BAD-05', customer_phone: '123', csat_score: 5, nps_score: 10 }, 'Số điện thoại cần có từ 7 đến 20 ký tự hợp lệ'],
+    [{ ticket_code: 'DEMO-BAD-05', customer_phone: '123', csat_score: 5, nps_score: 10 }, 'Số điện thoại cần có từ 7 đến 15 chữ số hợp lệ'],
     [{ ticket_code: 'DEMO-BAD-01', customer_phone: '0901234567', csat_score: 0, nps_score: 10 }, 'Điểm CSAT phải là số nguyên từ 1 đến 5'],
     [{ ticket_code: 'DEMO-BAD-02', customer_phone: '0901234567', csat_score: 5, nps_score: 11 }, 'Điểm NPS phải là số nguyên từ 0 đến 10'],
     [{ ticket_code: 'DEMO-BAD-03', customer_phone: '0901234567', csat_score: '5', nps_score: 10 }, 'Điểm CSAT phải là số nguyên từ 1 đến 5'],

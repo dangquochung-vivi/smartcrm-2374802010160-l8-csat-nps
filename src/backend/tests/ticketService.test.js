@@ -59,6 +59,8 @@ describe('ticketService', () => {
 
   test('updates and deletes a ticket', async () => {
     await expect(ticketService.update(10, validTicket)).resolves.toMatchObject({ ticket_id: 10 });
+    await expect(ticketService.update(11, { ...validTicket, status: 'DA_DONG' }))
+      .resolves.toMatchObject({ ticket_id: 11, status: 'DA_DONG' });
     await expect(ticketService.delete(10)).resolves.toBeUndefined();
     expect(ticketRepository.update).toHaveBeenCalledWith(10, validTicket);
     expect(ticketRepository.delete).toHaveBeenCalledWith(10);

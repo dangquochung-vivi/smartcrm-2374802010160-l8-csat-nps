@@ -29,9 +29,10 @@ function renderSurveys(surveys, search) {
 
   surveyTableBody.innerHTML = surveys.map((item) => {
     const csat = Number(item.csat_score);
-    const nps = Number(item.nps_score);
+    const hasNps = item.nps_score !== null && item.nps_score !== undefined;
+    const nps = hasNps ? Number(item.nps_score) : null;
     const csatClass = csat >= 4 ? 'csat-good' : csat >= 3 ? 'csat-mid' : 'csat-bad';
-    const npsClass = nps >= 9 ? 'nps-good' : nps >= 7 ? 'csat-mid' : 'csat-bad';
+    const npsClass = !hasNps ? '' : nps >= 9 ? 'nps-good' : nps >= 7 ? 'csat-mid' : 'csat-bad';
     return `
       <tr>
         <td>${escapeHTML(formatDate(item.created_at))}</td>
@@ -39,7 +40,7 @@ function renderSurveys(surveys, search) {
         <td>${escapeHTML(item.customer_name || 'Không có thông tin')}</td>
         <td>${escapeHTML(item.customer_phone || 'Không có thông tin')}</td>
         <td><span class="score-pill ${csatClass}">${csat}</span></td>
-        <td><span class="score-pill ${npsClass}">${nps}</span></td>
+        <td>${hasNps ? `<span class="score-pill ${npsClass}">${nps}</span>` : '—'}</td>
         <td>${escapeHTML(item.feedback_content || 'Không có nhận xét')}</td>
       </tr>
     `;

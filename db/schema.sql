@@ -30,9 +30,11 @@ CREATE TABLE IF NOT EXISTS survey_ticket (
     survey_id SERIAL PRIMARY KEY,
     ticket_id INT NOT NULL UNIQUE REFERENCES ticket(ticket_id) ON DELETE RESTRICT,
     csat_score SMALLINT NOT NULL CHECK (csat_score BETWEEN 1 AND 5),
-    nps_score SMALLINT NOT NULL CHECK (nps_score BETWEEN 0 AND 10),
+    nps_score SMALLINT CHECK (nps_score BETWEEN 0 AND 10),
     feedback_content VARCHAR(500) NOT NULL DEFAULT '',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+ALTER TABLE survey_ticket ALTER COLUMN nps_score DROP NOT NULL;
 
 CREATE INDEX IF NOT EXISTS idx_survey_scores ON survey_ticket(csat_score, nps_score);

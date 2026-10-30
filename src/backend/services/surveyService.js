@@ -1,5 +1,6 @@
 const surveyRepository = require('../repositories/surveyRepository');
 const ServiceError = require('./serviceError');
+const normalizePhone = require('../utils/phone');
 
 class SurveyService {
   async getAllSurveys(search) {
@@ -23,11 +24,12 @@ class SurveyService {
     if (!code || code.length > 20) {
       throw new ServiceError('Vui lòng nhập mã phiếu từ 1 đến 20 ký tự', 400, 'INVALID_TICKET_LOOKUP');
     }
-    if (!/^[0-9+() -]{7,20}$/.test(phone) || phone.replace(/\D/g, '').length < 7) {
-      throw new ServiceError('Số điện thoại cần có từ 7 đến 20 ký tự hợp lệ', 400, 'INVALID_TICKET_LOOKUP');
+    const normalizedPhone = normalizePhone(phone);
+    if (!/^[0-9+(). -]{7,24}$/.test(phone) || normalizedPhone.length < 7 || normalizedPhone.length > 15) {
+      throw new ServiceError('Số điện thoại cần có từ 7 đến 15 chữ số hợp lệ', 400, 'INVALID_TICKET_LOOKUP');
     }
 
-    const ticket = await surveyRepository.findCustomerTicket(code, phone);
+    const ticket = await surveyRepository.findCustomerTicket(code, normalizedPhone);
     if (!ticket) {
       throw new ServiceError('Không tìm thấy phiếu đã hoàn tất khớp với mã phiếu và số điện thoại', 404, 'TICKET_NOT_FOUND');
     }
@@ -51,8 +53,9 @@ class SurveyService {
       invalid('Mã phiếu cần có từ 1 đến 20 ký tự');
     }
     const customerPhone = typeof data.customer_phone === 'string' ? data.customer_phone.trim() : '';
-    if (!/^[0-9+() -]{7,20}$/.test(customerPhone) || customerPhone.replace(/\D/g, '').length < 7) {
-      invalid('Số điện thoại cần có từ 7 đến 20 ký tự hợp lệ');
+    const normalizedPhone = normalizePhone(customerPhone);
+    if (!/^[0-9+(). -]{7,24}$/.test(customerPhone) || normalizedPhone.length < 7 || normalizedPhone.length > 15) {
+      invalid('Số điện thoại cần có từ 7 đến 15 chữ số hợp lệ');
     }
     if (!Number.isInteger(data.csat_score) || data.csat_score < 1 || data.csat_score > 5) {
       invalid('Điểm CSAT phải là số nguyên từ 1 đến 5');
@@ -68,7 +71,7 @@ class SurveyService {
     const survey = await surveyRepository.create({
       ...data,
       ticket_code: ticketCode,
-      customer_phone: customerPhone,
+      customer_phone: normalizedPhone,
       feedback_content: data.feedback_content?.trim() || ''
     });
     if (!survey) {
