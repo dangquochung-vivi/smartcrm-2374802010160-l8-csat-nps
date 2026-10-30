@@ -1,5 +1,6 @@
 # Bí mật - KHÔNG BAO GIỜ commit
 .env
+!.env.example
 
 # Dependencies & build
 node_modules/

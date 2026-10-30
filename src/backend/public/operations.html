@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý phiếu và trung tâm | SmartCRM</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="main-content operations-page">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">SmartCRM · Track SE</p>
+          <h1>Quản lý phiếu bảo hành</h1>
+          <p>CRUD phiếu bảo hành và trung tâm, dữ liệu lưu trong PostgreSQL.</p>
+        </div>
+        <a class="secondary-btn" href="/">Quay lại Dashboard</a>
+      </header>
+
+      <section class="content-grid operations-grid">
+        <article class="panel form-panel">
+          <div class="panel-header"><h3>Trung tâm bảo hành</h3></div>
+          <form id="centerForm">
+            <input id="centerId" type="hidden" />
+            <label>Tên trung tâm
+              <input id="centerName" name="center_name" minlength="2" maxlength="100" required />
+            </label>
+            <label>Địa chỉ
+              <input id="centerAddress" name="address" maxlength="255" required />
+            </label>
+            <div class="form-actions">
+              <button id="saveCenterButton" class="primary-btn" type="submit">Thêm trung tâm</button>
+              <button id="cancelCenterEdit" class="secondary-btn" type="button" hidden>Hủy sửa</button>
+            </div>
+          </form>
+          <p id="centerMessage" role="status" aria-live="polite"></p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tên</th><th>Địa chỉ</th><th>Thao tác</th></tr></thead>
+              <tbody id="centerRows"><tr><td colspan="3">Đang tải trung tâm...</td></tr></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel form-panel">
+          <div class="panel-header"><h3>Phiếu bảo hành</h3></div>
+          <form id="ticketForm">
+            <input id="ticketId" type="hidden" />
+            <label>Mã phiếu
+              <input id="ticketCode" name="ticket_code" maxlength="20" required />
+            </label>
+            <label>Trung tâm
+              <select id="ticketCenter" name="center_id" required></select>
+            </label>
+            <label>Tên khách hàng
+              <input id="ticketCustomer" name="customer_name" minlength="2" maxlength="100" required />
+            </label>
+            <label>Số điện thoại
+              <input id="ticketPhone" name="customer_phone" maxlength="20" required />
+            </label>
+            <label>Thiết bị
+              <input id="ticketDevice" name="device_model" maxlength="100" required />
+            </label>
+            <label>Trạng thái
+              <select id="ticketStatus" name="status" required>
+                <option value="MOI">Mới</option>
+                <option value="DANG_SUA">Đang sửa</option>
+                <option value="HOAN_TAT">Hoàn tất</option>
+              </select>
+            </label>
+            <div class="form-actions">
+              <button id="saveTicketButton" class="primary-btn" type="submit">Thêm phiếu</button>
+              <button id="cancelTicketEdit" class="secondary-btn" type="button" hidden>Hủy sửa</button>
+            </div>
+          </form>
+          <p id="ticketMessage" role="status" aria-live="polite"></p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Mã phiếu</th><th>Khách hàng</th><th>Trung tâm</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
+              <tbody id="ticketRows"><tr><td colspan="5">Đang tải phiếu...</td></tr></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+    </main>
+    <script src="/operations.js"></script>
+  </body>
+</html>
