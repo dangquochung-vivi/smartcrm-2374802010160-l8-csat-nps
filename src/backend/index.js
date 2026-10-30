@@ -2,23 +2,14 @@ const path = require('path');
 const crypto = require('crypto');
 require('dotenv').config({ path: path.join(__dirname, '../../.env') });
 const express = require('express');
-const { Pool } = require('pg');
 const authService = require('./services/authService');
+const pool = require('./db');
 
 const app = express();
 const publicDirectory = path.join(__dirname, 'public');
 const jwtSecret = process.env.SECRET_KEY || crypto.randomBytes(32).toString('hex');
 const revokedTokens = new Map();
 app.use(express.json());
-
-// Cấu hình kết nối PostgreSQL từ biến môi trường
-const pool = new Pool({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    database: process.env.DB_NAME,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-});
 
 app.get('/health', (req, res) => res.json({ status: 'OK', service: 'SmartCRM CSAT/NPS' }));
 
@@ -40,6 +31,10 @@ app.get('/customer/register', (req, res) => {
 
 app.get('/customer', (req, res) => {
     res.sendFile(path.join(publicDirectory, 'customer.html'));
+});
+
+app.get('/operations', (req, res) => {
+    res.sendFile(path.join(publicDirectory, 'operations.html'));
 });
 
 app.get('/index.html', (req, res) => {
@@ -114,7 +109,11 @@ app.get('/db-check', requireAuth, async (req, res) => {
         const result = await pool.query('SELECT NOW() AS server_time');
         res.json({ status: 'OK', ...result.rows[0] });
     } catch (err) {
-        res.status(500).json({ status: 'ERROR', message: err.message });
+        console.error('db-check failed:', err.message);
+        res.status(503).json({
+            status: 'ERROR',
+            message: 'Không thể kết nối PostgreSQL; chức năng kiểm tra database tạm thời không khả dụng'
+        });
     }
 });
 
@@ -133,6 +132,16 @@ app.use('/surveys', requireAuth, (req, res, next) => {
     }
     next();
 }, surveyRoutes);
+
+function requireInternalUser(req, res, next) {
+    if (req.user.role === 'customer') {
+        return res.status(403).json({ success: false, code: 'FORBIDDEN', error: 'Chỉ nhân viên nội bộ được quản lý dữ liệu' });
+    }
+    next();
+}
+
+app.use('/api/service-centers', requireAuth, requireInternalUser, require('./routes/serviceCenterRoutes'));
+app.use('/api/tickets', requireAuth, requireInternalUser, require('./routes/ticketRoutes'));
 
 app.use(express.static(publicDirectory, { index: false }));
 

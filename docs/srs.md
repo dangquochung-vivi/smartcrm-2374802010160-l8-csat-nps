@@ -68,4 +68,4 @@ Hệ thống cung cấp tính năng tự động gửi biểu mẫu khảo sát 
 * FR-L8-07: Bổ sung cho UC-07 (Đăng ký/đăng nhập và giới hạn quyền truy cập theo actor).
 
 ## 7. Trạng thái prototype
-Prototype hiện có đăng nhập nội bộ, đăng ký/đăng nhập khách hàng, form gửi khảo sát và dashboard thống kê cơ bản. Tài khoản đăng ký và phản hồi đang lưu trong bộ nhớ tiến trình; chưa có tích hợp SMS/email, lọc theo các tiêu chí FR-L8-05 hoặc biểu đồ xu hướng theo thời gian của FR-L8-06. Đây là các khoảng trống triển khai, không phải yêu cầu đã hoàn tất.
+Prototype hiện có đăng nhập nội bộ, đăng ký/đăng nhập khách hàng, form gửi khảo sát, dashboard thống kê, CRUD trung tâm bảo hành và CRUD phiếu bảo hành. Phiếu, trung tâm và khảo sát lưu trong PostgreSQL; tài khoản khách đăng ký vẫn lưu trong bộ nhớ tiến trình. Chưa có tích hợp SMS/email tự động, lọc khảo sát theo các tiêu chí FR-L8-05 hoặc biểu đồ xu hướng theo tuần/tháng của FR-L8-06. Đây là các khoảng trống triển khai, không phải yêu cầu đã hoàn tất.
