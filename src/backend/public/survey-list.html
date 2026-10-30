@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danh sách khảo sát | SmartCRM</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">S</div>
+          <div><p class="eyebrow">SmartCRM</p><h2>CSAT / NPS</h2></div>
+        </div>
+        <nav class="side-nav">
+          <a href="/">Tổng quan</a>
+          <a class="active" href="/survey/list">Danh sách</a>
+          <a href="/#reportSection">Báo cáo</a>
+          <a href="/operations">Quản lý phiếu / trung tâm</a>
+        </nav>
+        <div class="status-box"><span class="dot"></span>Hệ thống đang hoạt động</div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div><p class="eyebrow">Khảo sát</p><h1>Danh sách phản hồi</h1></div>
+          <div class="topbar-actions">
+            <div class="current-user"><strong id="currentUserName"></strong><small id="currentUserRole"></small></div>
+            <button class="secondary-btn" id="logoutButton" type="button">Đăng xuất</button>
+          </div>
+        </header>
+
+        <section class="panel table-panel">
+          <div class="panel-header">
+            <h3>Các khảo sát đã gửi</h3>
+            <span id="statusBadge" class="badge" role="status" aria-live="polite">Đang tải...</span>
+          </div>
+          <form id="surveySearchForm" class="survey-search-form" role="search">
+            <label for="surveySearchInput">Tìm khách hàng hoặc phiếu</label>
+            <div class="survey-search-controls">
+              <input id="surveySearchInput" type="search" maxlength="100" placeholder="Tên khách hàng, số điện thoại hoặc mã phiếu" />
+              <button class="primary-btn" type="submit">Tìm kiếm</button>
+              <button id="clearSurveySearch" class="secondary-btn" type="button">Xóa tìm kiếm</button>
+            </div>
+            <p class="search-hint">Tìm trong các phản hồi đã gửi theo thông tin khách hàng hoặc mã phiếu bảo hành.</p>
+          </form>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Ngày gửi</th><th>Mã phiếu</th><th>Khách hàng</th><th>Số điện thoại</th><th>CSAT</th><th>NPS</th><th>Nhận xét</th></tr>
+              </thead>
+              <tbody id="surveyTableBody"><tr><td colspan="7" class="empty-row">Đang tải danh sách...</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="/internal.js"></script>
+    <script src="/survey-list.js"></script>
+  </body>
+</html>

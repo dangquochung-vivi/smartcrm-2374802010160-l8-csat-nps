@@ -2,7 +2,15 @@ const repository = require('../repositories/ticketRepository');
 const serviceCenterRepository = require('../repositories/serviceCenterRepository');
 const ServiceError = require('./serviceError');
 
-const TICKET_STATUSES = ['MOI', 'DANG_SUA', 'HOAN_TAT'];
+const TICKET_STATUSES = [
+  'MOI',
+  'DANG_SUA',
+  'HOAN_TAT',
+  'CHO_LINH_KIEN',
+  'DA_PHAN_CONG',
+  'DANG_XU_LY',
+  'DA_DONG'
+];
 
 function validateId(id) {
   const parsed = Number(id);
@@ -28,7 +36,7 @@ function validateData(data) {
   if (!/^[0-9+() -]{7,20}$/.test(customerPhone)) throw new ServiceError('Số điện thoại cần có từ 7 đến 20 ký tự hợp lệ');
   if (!deviceModel || deviceModel.length > 100) throw new ServiceError('Tên thiết bị cần có từ 1 đến 100 ký tự');
   if (!Number.isInteger(centerId) || centerId < 1) throw new ServiceError('Vui lòng chọn trung tâm bảo hành hợp lệ');
-  if (!TICKET_STATUSES.includes(status)) throw new ServiceError('Trạng thái phải là MOI, DANG_SUA hoặc HOAN_TAT');
+  if (!TICKET_STATUSES.includes(status)) throw new ServiceError('Trạng thái phiếu không hợp lệ');
 
   return {
     ticket_code: ticketCode,

@@ -55,7 +55,7 @@ Hệ thống cung cấp tính năng tự động gửi biểu mẫu khảo sát 
 ## 5. Giao diện người dùng dự kiến (UI Wireframe Description)
 * Màn hình Khảo sát: Thiết kế dạng Responsive tương thích tốt trên cả thiết bị di động và máy tính, bố cục trực quan với các nút bấm chọn điểm số to rõ.
 * Màn hình Dashboard Quản lý: Trình bày dạng các thẻ thống kê tổng quan kết hợp biểu đồ cột hoặc đường thể hiện xu hướng biến động chỉ số NPS qua các tháng.
-* Cổng khách hàng: Đăng ký/đăng nhập riêng và form gửi CSAT/NPS theo mã phiếu bảo hành; không hiển thị dữ liệu phản hồi của khách hàng khác.
+* Cổng khách hàng: Đăng ký/đăng nhập riêng, tìm phiếu hoàn tất bằng mã phiếu và số điện thoại trên phiếu, sau đó gửi CSAT/NPS; không hiển thị dữ liệu phản hồi của khách hàng khác. Tài khoản nội bộ chỉ xem danh sách và báo cáo, không gửi khảo sát thay khách hàng.
 
 ## 6. Bảng truy vết yêu cầu (Traceability Matrix)
 
@@ -68,4 +68,4 @@ Hệ thống cung cấp tính năng tự động gửi biểu mẫu khảo sát 
 * FR-L8-07: Bổ sung cho UC-07 (Đăng ký/đăng nhập và giới hạn quyền truy cập theo actor).
 
 ## 7. Trạng thái prototype
-Prototype hiện có đăng nhập nội bộ, đăng ký/đăng nhập khách hàng, form gửi khảo sát, dashboard thống kê, CRUD trung tâm bảo hành và CRUD phiếu bảo hành. Phiếu, trung tâm và khảo sát lưu trong PostgreSQL; tài khoản khách đăng ký vẫn lưu trong bộ nhớ tiến trình. Chưa có tích hợp SMS/email tự động, lọc khảo sát theo các tiêu chí FR-L8-05 hoặc biểu đồ xu hướng theo tuần/tháng của FR-L8-06. Đây là các khoảng trống triển khai, không phải yêu cầu đã hoàn tất.
+Prototype hiện có đăng nhập nội bộ, đăng ký/đăng nhập khách hàng, tìm kiếm phiếu hoàn tất bằng mã phiếu và số điện thoại, form trả lời khảo sát dành cho khách hàng, danh sách và dashboard thống kê dành cho nhân viên, CRUD trung tâm bảo hành và CRUD phiếu bảo hành. Tài khoản khách, phiếu, trung tâm và khảo sát lưu trong PostgreSQL; mật khẩu tài khoản khách lưu dưới dạng băm có salt. Chưa có tích hợp SMS/email tự động, bộ lọc danh sách khảo sát theo thời gian/điểm/tên khách hàng hoặc biểu đồ xu hướng theo tuần/tháng của FR-L8-05/FR-L8-06. Đây là các khoảng trống triển khai, không phải yêu cầu đã hoàn tất.

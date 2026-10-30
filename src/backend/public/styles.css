@@ -152,6 +152,12 @@ textarea {
   background: var(--primary-dark);
 }
 
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
 .secondary-btn {
   background: #e5e7eb;
   color: var(--text);
@@ -419,6 +425,32 @@ tbody td {
   background: #dbeafe;
 }
 
+.survey-search-form {
+  margin: 0 0 18px;
+}
+
+.survey-search-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.survey-search-controls input {
+  flex: 1;
+  min-width: 120px;
+}
+
+.survey-search-controls button {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.search-hint {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
 @media (max-width: 980px) {
   .app-shell {
     flex-direction: column;
@@ -432,6 +464,10 @@ tbody td {
   .operations-grid,
   .metrics-grid {
     grid-template-columns: 1fr;
+  }
+
+  .survey-search-controls {
+    flex-wrap: wrap;
   }
 }
 
@@ -769,6 +805,35 @@ tbody td {
   border-radius: 8px;
   background: #fff;
   padding: 28px;
+}
+
+.customer-survey-form[hidden],
+#surveyFields[hidden] {
+  display: none;
+}
+
+.customer-survey-form h2 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+}
+
+.customer-survey-form > input {
+  margin: -4px 0 12px;
+  border-color: #d8dfda;
+  border-radius: 6px;
+}
+
+.ticket-summary {
+  border-radius: 6px;
+  background: #e8f3ed;
+  color: #145d47;
+  padding: 12px 14px;
+  font-size: 0.9rem;
+}
+
+#surveyFields {
+  display: grid;
+  gap: 12px;
 }
 
 .customer-survey-form > label {

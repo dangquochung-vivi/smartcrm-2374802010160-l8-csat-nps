@@ -13,6 +13,15 @@ function respondError(res, err) {
   return res.status(500).json({ success: false, error: 'Không thể xử lý khảo sát lúc này' });
 }
 
+router.post('/ticket-check', async (req, res) => {
+  try {
+    const ticket = await surveyService.findCustomerTicket(req.body?.ticket_code, req.body?.customer_phone);
+    res.json({ success: true, data: ticket });
+  } catch (err) {
+    respondError(res, err);
+  }
+});
+
 router.get('/stats', async (req, res) => {
   try {
     const stats = await surveyService.getStats();
@@ -25,7 +34,7 @@ router.get('/stats', async (req, res) => {
 // GET /surveys - Danh sách khảo sát (M2/M3)
 router.get('/', async (req, res) => {
   try {
-    const surveys = await surveyService.getAllSurveys();
+    const surveys = await surveyService.getAllSurveys(req.query.search);
     res.json({ success: true, data: surveys });
   } catch (err) {
     respondError(res, err);
