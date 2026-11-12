@@ -1,37 +1,22 @@
 # Test Report — SmartCRM L8 CSAT/NPS
 
-**Sinh viên:** Đặng Quốc Hùng (2374802010160) · **Track:** SE  
-**Ngày chạy:** 2026-11-13  
-**Trạng thái:** Ghi nhận kết quả chạy thật; chưa phải Test Report hoàn chỉnh cho checklist Buổi 14.
+**Sinh viên:** Đặng Quốc Hùng (2374802010160) · **Track:** SE
+**Ngày chạy:** 2026-11-13
+**Trạng thái:** Báo cáo kết quả suite tự động hiện có; chưa phải kết quả 12 ca kiểm thử hệ thống Buổi 14.
 
-## Kết quả chạy
+## Kết quả đã chạy
 
 | Lượt | Lệnh | Phạm vi | Đã chạy | PASS | FAIL | Ảnh |
 |---|---|---|---:|---:|---:|---|
-| 1 | `npm --prefix src/backend test -- --runInBand` | Jest unit tests hiện có | 10 | 10 | 0 | Chưa chụp |
+| 1 | `npm --prefix src/backend test -- --runInBand` | Jest unit/service tests hiện có | 39 | 39 | 0 | Chưa chụp |
 
-Kết quả runner: **2 test suites passed, 10 tests passed, 0 failed**.
+Kết quả runner: **6 test suites passed, 39 tests passed, 0 failed**. Môi trường lần chạy: Windows, Node.js v22.14.0, npm 10.9.2. Bộ test tự dựng dữ liệu/mocks; không chứng minh đã chạy đủ luồng hệ thống với PostgreSQL.
 
-## Các test thực thi
+## Đối chiếu checklist Buổi 14
 
-### `src/backend/tests/authService.test.js` — 5 PASS
+- **Ca kiểm thử hệ thống trong [Test Plan](test-plan.md) đã chạy thật:** 0/12; PASS: 0; FAIL: 0. Chưa chạy không đồng nghĩa với PASS.
+- **Đủ năm loại cho 10–12 ca hệ thống:** Chưa xác nhận. Bảng test dự kiến có các loại luồng đúng, biên, dữ liệu sai, bảo mật/chất lượng dữ liệu và tái lập, nhưng chưa có lượt chạy/minh chứng để tính.
+- **Ảnh chụp:** Chưa có ảnh kết quả test Buổi 14 trong `docs/screenshots/`.
+- **Test sau khi sửa ba bug Buổi 14:** Chưa xác nhận; hiện chưa có ba bug mới được tái lập, sửa và commit riêng.
 
-1. Danh sách tài khoản demo có đủ ba vai trò.
-2. Xác minh mật khẩu demo đúng/sai và không lộ password hash.
-3. Token hợp lệ được chấp nhận; chữ ký bị sửa bị từ chối.
-4. Token hết hạn bị từ chối.
-5. Đăng ký customer chuẩn hóa email, xác minh mật khẩu và từ chối email trùng.
-
-### `src/backend/tests/ticket.test.js` — 5 PASS
-
-1. Thống kê có ít nhất hai khảo sát mẫu.
-2. CSAT trung bình có kiểu số hợp lệ.
-3. NPS trung bình có kiểu số hợp lệ.
-4. Tỷ lệ hài lòng nằm trong khoảng 0–100.
-5. Gửi khảo sát hợp lệ lưu đúng mã phiếu.
-
-## Đối chiếu yêu cầu Buổi 14
-
-Mười test trên là unit tests đang có, không bao phủ thay cho 10–12 ca kiểm thử hệ thống trong [Test Plan](test-plan.md). Chưa có ảnh kết quả tại `docs/screenshots/`; chưa chạy các ca biên và dữ liệu sai của API, kiểm thử phân quyền đầu-cuối hoặc kiểm thử tái lập trên môi trường sạch. Do đó chưa thể kết luận đã đủ năm loại kiểm thử Buổi 14.
-
-Chưa có lượt chạy FAIL nào trong report này. Không suy diễn rằng hệ thống không còn bug từ kết quả PASS của các unit tests.
+Suite Jest 39/39 là kết quả thật của kiểm thử mã tự động hiện có, không được dùng thay cho số ca hệ thống, ảnh chụp hoặc bug fix mà checklist yêu cầu.

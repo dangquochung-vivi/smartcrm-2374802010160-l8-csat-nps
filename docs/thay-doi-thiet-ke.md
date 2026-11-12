@@ -31,4 +31,4 @@
 - **Phản hồi của GV:** Phần kiểm chứng (bảng 4.2) đạt đủ các mục chung và theo track. Cần nộp đúng định dạng PDF, bổ sung `docs/ai-disclosure.md` và ghi lệnh kiểm thử trong README.
 - **Quyết định:** THỰC HIỆN
 - **Lý do:** Làm rõ minh chứng kiểm thử có thể tái lập và hoàn thiện các tài liệu bắt buộc trước khi nộp BT3.
-- **Ảnh hưởng:** Tạo bộ Test Plan, Test Report, Bug Log và file minh chứng Buổi 14. Tại thời điểm lập hồ sơ, suite Jest hiện có chạy đạt 10/10; các ca kiểm thử hệ thống, ảnh chụp và ba bug đã sửa bằng commit riêng chưa được xác minh. README đã có lệnh `npm --prefix src/backend test -- --runInBand`. Cần bổ sung `docs/ai-disclosure.md` và xuất bài nộp chính thức thành PDF.
+- **Ảnh hưởng:** README đã có lệnh `npm --prefix src/backend test -- --runInBand` và khai báo AI tổng quát. Bổ sung các tài liệu kiểm thử Buổi 14 và `docs/ai-disclosure.md`. Suite hiện tại chạy đạt 39/39 unit/service test; chưa chạy 12 ca kiểm thử hệ thống theo Test Plan, chưa có ảnh chụp và chưa có ba bug được sửa bằng commit riêng. Cần tự xác minh khai báo AI, hoàn thành kiểm thử/minh chứng còn thiếu và xuất bài nộp chính thức thành PDF.

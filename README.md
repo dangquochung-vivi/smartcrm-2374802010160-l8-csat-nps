@@ -188,6 +188,10 @@ Mở `http://localhost:3000/login`. Tài khoản demo có thể đăng nhập nh
 - Yêu cầu: `docs/srs.md`
 - Nhật ký thay đổi thiết kế: `docs/thay-doi-thiet-ke.md`
 - Nhật ký lỗi: `docs/bug-log.md`
+- Minh chứng checklist Buổi 14: `docs/minh-chung-buoi-14.md`
+- Test Plan: `docs/test-plan.md`
+- Test Report: `docs/test-report.md`
+- Khai báo sử dụng AI: `docs/ai-disclosure.md`
 - Hướng dẫn xem tài khoản khách hàng trong pgAdmin: `docs/tai-khoan-khach-hang.md`
 - Schema/migration: `db/schema.sql`
 - Seed sample có thể chạy lại an toàn: `data/sample/tickets.csv`, `db/seed.sql`
