@@ -1,7 +1,7 @@
 # Khai báo sử dụng AI — hồ sơ Buổi 14
 
-**Họ và tên:** Đặng Quốc Hùng  
-**MSSV:** 2374802010160  
+**Họ và tên:** Đặng Quốc Hùng
+**MSSV:** 2374802010160
 **Ngày:** 13/11/2026
 
 | Công cụ | Phần được hỗ trợ trong hồ sơ này | Cách kiểm tra |
