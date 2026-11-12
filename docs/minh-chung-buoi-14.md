@@ -1,36 +1,30 @@
 # Minh chứng checklist Buổi 14
 
-> Hồ sơ làm việc cho checklist Buổi 14; **không thay thế bài nộp BT3 chính thức**. Các số liệu dưới đây phân biệt kết quả đã chạy với các minh chứng còn thiếu. Không ghi nhận test, ảnh chụp hoặc commit chưa thực hiện.
+> Hồ sơ làm việc cho checklist Buổi 14; **không thay thế bài nộp BT3 chính thức**. PASS/FAIL và minh chứng chỉ ghi theo kết quả thực tế; các lượt gửi JSON sai cú pháp không được coi là đã xác minh nghiệp vụ.
 
 1. **Repo:** [SmartCRM - L8 CSAT/NPS](https://github.com/dangquochung-vivi/smartcrm-2374802010160-l8-csat-nps)
-   - **Commit gốc tham chiếu trước khi thêm hồ sơ này:** [0884c9c46d78bd2d131863fdc50902a6ebed1047](https://github.com/dangquochung-vivi/smartcrm-2374802010160-l8-csat-nps/commit/0884c9c46d78bd2d131863fdc50902a6ebed1047)
+   - **Commit mới nhất trên nhánh main:** [mở danh sách commit](https://github.com/dangquochung-vivi/smartcrm-2374802010160-l8-csat-nps/commits/main)
    - **Sinh viên:** Đặng Quốc Hùng (2374802010160) · **Track:** SE
 
-2. **Phản hồi BT2:** [docs/thay-doi-thiet-ke.md](thay-doi-thiet-ke.md) — TD-05 ghi nhận phản hồi và quyết định xử lý. README đã có lệnh test và phần khai báo AI tổng quát; hồ sơ khai báo riêng, test docs và PDF nộp chính thức cần hoàn thiện/kiểm tra.
+2. **Phản hồi BT2:** [docs/thay-doi-thiet-ke.md](thay-doi-thiet-ke.md).
 
-3. **Test Plan:** [docs/test-plan.md](test-plan.md) — phạm vi, môi trường và 12 ca kiểm thử hệ thống dự kiến. Các ca trong kế hoạch chưa được tính là đã chạy.
+3. **Test Plan:** [docs/test-plan.md](test-plan.md).
 
 4. **Test Report:** [docs/test-report.md](test-report.md)
-   - Kiểm thử hệ thống Buổi 14 đã chạy: **0/12** / PASS: **0** / FAIL: **0**.
-   - Riêng suite tự động hiện có: **39 test / 39 PASS / 0 FAIL**, bằng lệnh `npm --prefix src/backend test -- --runInBand`. Đây là unit/service tests, không thay thế 12 ca kiểm thử hệ thống.
-   - Đủ 5 loại cho kiểm thử hệ thống: **Chưa xác nhận** — các ca trong Test Plan chưa chạy.
-   - Ảnh chụp kết quả: **Chưa có** trong `docs/screenshots/`.
+   - Số test case hệ thống đã chạy và có kết quả: **9/12** / PASS: **7** / FAIL: **2**.
+   - Đủ 5 loại: **Chưa** — có minh chứng cho 4/5 loại; còn thiếu **tái lập (TC-12)**.
+   - Ảnh chụp kết quả: [docs/screenshots/](screenshots/). Có ảnh cho TC-01, TC-04 đến TC-11; email tài khoản đã được che ở TC-07, TC-08 và TC-09. TC-07/08 cần chạy lại bằng JSON hợp lệ.
 
 5. **Bug Log:** [docs/bug-log.md](bug-log.md)
-   - BUG-01 · Chưa phân loại trong Bug Log hiện có · API xác thực miền/kiểu điểm khảo sát · [commit 4f9b3ed](https://github.com/dangquochung-vivi/smartcrm-2374802010160-l8-csat-nps/commit/4f9b3ed95d8b83597710863717c7cb4def172888). Commit này chứa nhiều thay đổi, không phải commit riêng cho bug.
-   - BUG-02 · Chưa có bug Buổi 14 được tái lập và xác nhận · Chưa có commit.
-   - BUG-03 · Chưa có bug Buổi 14 được tái lập và xác nhận · Chưa có commit.
-   
-   Chưa đạt yêu cầu ba bug Buổi 14, mỗi bug một commit riêng. Không điền bug hoặc link commit giả.
+   - BUG-01 · Chưa phân loại trong Bug Log hiện có · API xác thực miền/kiểu điểm khảo sát · [commit 4f9b3ed](https://github.com/dangquochung-vivi/smartcrm-2374802010160-l8-csat-nps/commit/4f9b3ed95d8b83597710863717c7cb4def172888). Commit chứa nhiều thay đổi, không phải commit riêng cho bug.
+   - BUG-02 · Chưa xác nhận bug Buổi 14 được tái lập/sửa · Chưa có commit.
+   - BUG-03 · Chưa xác nhận bug Buổi 14 được tái lập/sửa · Chưa có commit.
 
-6. **Toàn bộ test PASS bằng một lệnh sau khi sửa bug:** **Suite hiện có PASS, nhưng chưa xác nhận sau khi sửa ba bug Buổi 14.** Lệnh đã chạy:
+   Không đánh đồng TC-07/08 với bug ứng dụng: request JSON sai cú pháp khiến chưa kiểm tra được validation nghiệp vụ. Không tạo bug hoặc commit giả.
 
-   ```powershell
-   npm --prefix src/backend test -- --runInBand
-   ```
-
+6. **Toàn bộ test PASS bằng một lệnh sau khi sửa bug:** **Chưa** — TC-07/08 chưa đạt kết quả mong đợi, TC-12 chưa chạy và chưa có lượt chạy lại sau khi sửa bug Buổi 14.
    **CI:** Chưa làm.
 
 7. **Việc còn lại trước hạn BT3:**
-   - Chạy 10–12 ca hệ thống trong Test Plan, ghi kết quả thật và lưu ảnh từng ca trong `docs/screenshots/`; tái lập/sửa bug thật (nếu có), mỗi bug một commit riêng.
-   - Tự xác nhận `docs/ai-disclosure.md`, hoàn thiện tài liệu BT3 và xuất/nộp đúng định dạng PDF; xác nhận các liên kết công khai mở được ở cửa sổ ẩn danh.
+   - Chạy lại TC-07/08 bằng JSON hợp lệ; chạy TC-02, TC-03 và TC-12, chụp ảnh kết quả thật.
+   - Chỉ ghi nhận/sửa bug sau khi tái lập; hoàn thiện tài liệu BT3, tự xác nhận khai báo AI và kiểm tra link công khai ở cửa sổ ẩn danh.

@@ -1,7 +1,7 @@
 # Test Plan — SmartCRM L8 CSAT/NPS
 
 **Sinh viên:** Đặng Quốc Hùng (2374802010160) · **Track:** SE
-**Trạng thái:** Kế hoạch kiểm thử hệ thống; 12 ca dưới đây chưa được ghi nhận là đã chạy.
+**Trạng thái:** Kế hoạch định nghĩa 12 ca kiểm thử hệ thống. Kết quả từng lượt chạy, gồm các ca chưa xác minh và cần chạy lại, được ghi trong [Test Report](test-report.md).
 
 ## Phạm vi
 
