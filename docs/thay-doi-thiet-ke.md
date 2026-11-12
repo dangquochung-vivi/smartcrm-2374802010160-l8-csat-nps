@@ -24,3 +24,11 @@
 - **Quyết định:** GHI RÕ TRẠNG THÁI
 - **Lý do:** Tránh mô tả sai rằng ứng dụng đã tự gửi SMS/email, lọc đầy đủ, có biểu đồ xu hướng hoặc lưu dữ liệu bền vững.
 - **Ảnh hưởng:** README và SRS ghi rõ các phần còn thiếu; hiện tại khảo sát/tài khoản đăng ký lưu trong bộ nhớ, portal nhận phản hồi qua form thủ công.
+
+## Sau phản hồi Bài tập 2 (Buổi 14)
+
+### TD-05 Bổ sung minh chứng kiểm thử và khai báo sử dụng AI
+- **Phản hồi của GV:** Phần kiểm chứng (bảng 4.2) đạt đủ các mục chung và theo track. Cần nộp đúng định dạng PDF, bổ sung `docs/ai-disclosure.md` và ghi lệnh kiểm thử trong README.
+- **Quyết định:** THỰC HIỆN
+- **Lý do:** Làm rõ minh chứng kiểm thử có thể tái lập và hoàn thiện các tài liệu bắt buộc trước khi nộp BT3.
+- **Ảnh hưởng:** Tạo bộ Test Plan, Test Report, Bug Log và file minh chứng Buổi 14. Tại thời điểm lập hồ sơ, suite Jest hiện có chạy đạt 10/10; các ca kiểm thử hệ thống, ảnh chụp và ba bug đã sửa bằng commit riêng chưa được xác minh. README đã có lệnh `npm --prefix src/backend test -- --runInBand`. Cần bổ sung `docs/ai-disclosure.md` và xuất bài nộp chính thức thành PDF.
