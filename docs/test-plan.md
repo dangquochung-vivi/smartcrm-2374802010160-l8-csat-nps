@@ -1,7 +1,7 @@
 # Test Plan — SmartCRM L8 CSAT/NPS
 
 **Sinh viên:** Đặng Quốc Hùng (2374802010160) · **Track:** SE
-**Trạng thái:** Kế hoạch định nghĩa 12 ca kiểm thử hệ thống. Kết quả từng lượt chạy, gồm các ca chưa xác minh và cần chạy lại, được ghi trong [Test Report](test-report.md).
+**Trạng thái:** Đã thực hiện 12 ca theo kế hoạch; kết quả và ảnh minh chứng được ghi trong [Test Report](test-report.md).
 
 ## Phạm vi
 
@@ -37,4 +37,4 @@ PASS chỉ khi phản hồi HTTP, nội dung, phân quyền và tác động DB 
 
 ## Phần chưa kiểm thử
 
-Chưa kiểm thử SMS/email tự động, lưu trữ/khôi phục ngoài môi trường PostgreSQL thử nghiệm, performance/load hoặc triển khai production. Chưa thực hiện các ca trong bảng; chưa có kết quả PASS/FAIL hoặc ảnh minh chứng.
+Chưa kiểm thử SMS/email tự động, lưu trữ/khôi phục ngoài môi trường PostgreSQL thử nghiệm, performance/load hoặc triển khai production. Kết quả 12 ca trong phạm vi được ghi tại [Test Report](test-report.md).
